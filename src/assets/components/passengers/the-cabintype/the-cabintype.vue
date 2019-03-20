@@ -1,6 +1,7 @@
 <template>
   <div class="cabin-type"
-       slot="slotCabinType">
+       slot="slotCabinType"
+  >
     <!--<div class="cabin-type-wrap">
       <label for="selectCabinType">{{ cabinTypeTitle }}</label>
       <select
@@ -16,44 +17,53 @@
     <span>{{ cabinTypeTitle }}</span>
     <span>{{changeTitleCabinClass()}}</span>
     <cool-select
-        v-model="selected"
-        :items="items"
-        @select="changeTitleCabinClass"/>
+      v-model="selected"
+      :items="items"
+      @select="changeTitleCabinClass"
+    />
   </div>
 </template>
 <script>
+  import { CoolSelect } from 'vue-cool-select';
   import './the-cabintype.scss';
-  import {CoolSelect} from "vue-cool-select";
 
   export default {
     name: 'the-cabin-type',
     components: {
-      CoolSelect
+      CoolSelect,
     },
     model: {
       prop: 'cabinTypes',
-      event: 'change'
+      event: 'change',
     },
     props: [
       'cabinTypeTitle',
-      'cabinTypes'],
+      'cabinTypes',
+    ],
     data() {
       return {
         items: [
-          {title: 'Economy Class'},
-          {title: 'Business Class'},
-          {title: 'VIP Class'},
+          { title: 'Economy Class' },
+          { title: 'Business Class' },
+          { title: 'VIP Class' },
         ],
-        selected: {title: 'Economy Class'},
+        selected: { title: 'Economy Class' },
         isActiveEconomyClass: true,
       };
     },
+
+    watch: {
+      selected(newValue) {
+        this.$emit('changecabintype', newValue);
+      },
+    },
+
     methods: {
       changeTitleCabinClass() {
-        this.$emit('selectedChange',this.selected);
+        this.$emit('selectedChange', this.selected);
         //console.log(this.selected);
-      }
-    }
+      },
+    },
   };
 </script>
 

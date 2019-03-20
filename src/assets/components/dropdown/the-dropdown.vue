@@ -1,17 +1,20 @@
 <template>
   <div class="dropdown-wrap">
     <div
-        class="dropdown-text"
-        @click="isActiveDropDown = !isActiveDropDown">
+      class="dropdown-text"
+      @click="isActiveDropDown = !isActiveDropDown"
+    >
       <span> {{ sumPassengers + ' ' + changeTitlePassengers() }},
-             {{ cabinTypeTitle +' Class' }}</span>
+             {{ cabinTypeTitle }}</span>
       <button
-          class="btn-dropdown"
-          :class="{'btn-dropdown-active': !isActiveDropDown }"></button>
+        class="btn-dropdown"
+        :class="{'btn-dropdown-active': !isActiveDropDown }"
+      ></button>
     </div>
 
     <div class="additional-fields-inner-wrap"
-         :class="{'is-hidden': !isActiveDropDown}">
+         :class="{'is-hidden': !isActiveDropDown}"
+    >
       <slot name="slotPassenger"></slot>
       <slot name="slotCabinType"></slot>
     </div>
@@ -25,9 +28,9 @@
   export default {
     name: 'the-dropdown',
     props: [
-        'title',
-        'sumPassengers',
-        'cabinTypeTitle'
+      'title',
+      'sumPassengers',
+      'cabinTypeTitle',
     ],
     data() {
       return {
@@ -35,13 +38,13 @@
       };
     },
     methods: {
-      changeTitlePassengers () {
+      changeTitlePassengers() {
         if (this.sumPassengers > 1) {
           return this.title + 's';
         } else {
-          return this.title
+          return this.title;
         }
-      }
-    }
+      },
+    },
   };
 </script>
