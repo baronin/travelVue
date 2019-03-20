@@ -4,12 +4,12 @@
       <the-dropdown
           :sumPassengers="getSumPassengers"
           :title="passengersTitle"
-          :cabinTypeTitle="selectedType">
-
+          :cabinTypeTitle="selectedType"
+          @selectedChange="changeTitle">
+          {{changeTitle()}}
         <div class="passenger-row"
              slot="slotPassenger"
              v-for="item in passengersTypes">
-
           <span>{{item.title}}</span>
           <the-counter
               :counter="item.min"
@@ -19,7 +19,8 @@
         </div>
         <the-cabin-type slot="slotCabinType"
                         :cabinTypeTitle="cabinTypeTitle"
-                        :cabinTypes="cabinTypes"/>
+                        :cabinTypes="cabinTypes"
+                        />
 
       </the-dropdown>
     </div>
@@ -39,6 +40,9 @@
       TheCounter,
       TheDropdown
     },
+    props: [
+      'selected'
+    ],
     data() {
       return {
         dataForApi: {
@@ -88,6 +92,10 @@
         } else {
           return this.decrementDisabled = false;
         }
+      },
+      changeTitle() {
+        this.selected;
+        console.log(this.selected);
       }
     },
   }

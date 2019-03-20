@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import App from './views/App/App.vue'
 import router from './router'
-import vSelect from 'vue-select'
+import VueSelect from 'vue-cool-select'
 
-Vue.config.productionTip = false
-Vue.component('v-select', vSelect);
+Vue.config.productionTip = false;
 
+Vue.use(VueSelect, {
+  theme: 'bootstrap' // or 'material-design'
+})
 
 new Vue({
   render: h => h(App),
   router,
-}).$mount('#app')
+}).$mount('#app');

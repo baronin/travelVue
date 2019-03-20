@@ -11,6 +11,7 @@
     "axios": "^0.18.0",
     "moment": "^2.24.0",
     "vue": "^2.6.6",
+    "vue-cool-select": "^2.9.0",
     "vue-router": "^3.0.2",
     "vue-select": "^2.6.0",
     "vue-single-select": "^1.0.29",

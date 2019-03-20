@@ -3,7 +3,8 @@
     <div
         class="dropdown-text"
         @click="isActiveDropDown = !isActiveDropDown">
-      <span>{{ sumPassengers }} {{ changeTitle() }}, {{ cabinTypeTitle +' Class' }}</span>
+      <span> {{ sumPassengers + ' ' + changeTitlePassengers() }},
+             {{ cabinTypeTitle +' Class' }}</span>
       <button
           class="btn-dropdown"
           :class="{'btn-dropdown-active': !isActiveDropDown }"></button>
@@ -34,7 +35,7 @@
       };
     },
     methods: {
-      changeTitle () {
+      changeTitlePassengers () {
         if (this.sumPassengers > 1) {
           return this.title + 's';
         } else {

@@ -13,49 +13,47 @@
         </option>
       </select>
     </div>-->
-
-    <!--<v-select :options="options"
-              v-model="selected"/>-->
-    <vue-single-select/>
+    <span>{{ cabinTypeTitle }}</span>
+    <span>{{changeTitleCabinClass()}}</span>
+    <cool-select
+        v-model="selected"
+        :items="items"
+        @select="changeTitleCabinClass"/>
   </div>
 </template>
 <script>
   import './the-cabintype.scss';
-  import VueSingleSelect from "vue-single-select";
+  import {CoolSelect} from "vue-cool-select";
 
   export default {
     name: 'the-cabin-type',
     components: {
-      VueSingleSelect
+      CoolSelect
     },
-    props: ['cabinTypeTitle', 'cabinTypes'],
+    model: {
+      prop: 'cabinTypes',
+      event: 'change'
+    },
+    props: [
+      'cabinTypeTitle',
+      'cabinTypes'],
     data() {
       return {
-        selectedType: 'Economy Class',
-        isActiveEconomyClass: true,
-        options: [
-          {id: 1, label: 'foo'},
-          {id: 3, label: 'bar'},
-          {id: 2, label: 'baz'},
+        items: [
+          {title: 'Economy Class'},
+          {title: 'Business Class'},
+          {title: 'VIP Class'},
         ],
-        selected: {id: 3, label: 'bar'},
-        /* cabinTypeTitle: 'Cabin Type'*/
+        selected: {title: 'Economy Class'},
+        isActiveEconomyClass: true,
       };
     },
     methods: {
-      btnFun() {
-        let btn = document.getElementById("selectCabinType").options[n].setAttribute('style', "background-color:#008000");
-        console.log(btn);
-
-
+      changeTitleCabinClass() {
+        this.$emit('selectedChange',this.selected);
+        //console.log(this.selected);
       }
     }
-    /* methods: {
-       changeType(key) {
-         this.selectedType = key;
-         this.$emit('selectedChange', this.selectedType)
-       },
-     }*/
   };
 </script>
 
@@ -68,71 +66,9 @@
     width: 100%;
     background: none;
   }
+
   .clear {
     display: none;
   }
-  .dropdown {
-    min-width: 162px;
-  }
-
-
-  .dropdown li {
-    background-color: $color-white;
-    padding: 14px;
-    border-bottom: 1px solid rgba(112, 128, 144, 0.1)
-  }
-
-  .dropdown li:last-child {
-    border-bottom: none;
-  }
-
-  .dropdown li a {
-    padding: 10px 20px;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    font-size: 1.25em;
-  }
-
-  .dropdown li a .fa {
-    padding-right: 0.5em;
-  }
-
-  /*
-  .form-control {
-    margin: 0!important;
-    padding: 14px!important;
-  }
-
-  .open-indicator::before {
-    border-width: 1px 1px 0 0!important;
-    height: 9px!important;
-    width: 9px!important;
-    border-color: $color-gray!important;
-  }
-  .v-select .selected-tag {
-    padding: 14px!important;
-    margin: 0!important;
-  }
-  .v-select .dropdown-toggle {
-    padding: 0!important;
-  }
-  .v-select .vs__selected-options {
-    padding: 0!important;
-  }
-  .v-select .vs__actions {
-    padding-right: 14px!important;
-  }
-  .v-select .dropdown-menu .highlight a {
-    background-color: white!important;
-    color: #000!important;
-  }
-  .v-select .dropdown-menu .highlight a:hover {
-    background-color: #fff!important;
-  }
-  .v-select .dropdown-menu .active a {
-    color: $color-dark-main;
-    background: $color-white;
-  }*/
 
 </style>
