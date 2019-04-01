@@ -1,0 +1,103 @@
+.cabin-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .cabin-type-wrap {
+    position: relative;
+    min-width: 162px;
+  }
+
+  .cabin-type-item {
+    position: absolute;
+    top: 50px;
+
+    width: 100%;
+    padding: 14px;
+    background-color: $color-white;
+
+    li {
+      margin-bottom: 14px;
+      cursor: pointer;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .trip-class {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px;
+
+    border: 1px solid $color-gray-light;
+    cursor: pointer;
+    &:hover {
+      border-color: $color-gray-medium;
+    }
+
+    .cabin-dropdown {
+      cursor: pointer;
+    }
+  }
+}
+
+.IZ-select {
+  position: relative;
+  cursor: pointer;
+}
+
+.IZ-select__input {
+  //min-width: 162px;
+  border: 1px solid $color-gray-light !important;
+  border-radius: 4px!important;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 38%;
+    right: 15px;
+
+    width: 10px;
+    height: 10px;
+
+    background: url("../../img/btn/arrow-down-gray.png") no-repeat center;
+
+    @include desktop {
+    }
+  }
+
+  input {
+    font-size: $font-size-medium!important;
+    padding: 10px 12px!important;
+    cursor: pointer;
+  }
+}
+
+.IZ-select__input.IZ-select__input--focused {
+   border-color: $color-gray-light;
+  outline: 0;
+  box-shadow: 0 0 0 1px $color-blue-medium!important;
+  &::before {
+    transform: rotate(180deg);
+    background-image: url("../../img/btn/arrow-down-blue.png");
+  }
+}
+
+.IZ-select__item:hover {
+  background-color: $color-active-item !important;
+}
+
+.IZ-select__menu {
+  .IZ-select__menu-items {
+    .IZ-select__item--selected {
+      color: $color-dark-main !important;
+      background-color: $color-active-item;
+    }
+  }
+}
+
+.clear {
+  display: none;
+}

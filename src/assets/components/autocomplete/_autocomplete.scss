@@ -1,0 +1,82 @@
+.city-holder {
+  position: absolute;
+  width: 100%;
+  background: $color-white;
+  border-radius: 4px;
+
+  @include desktop{
+    width: 350px;
+  }
+}
+
+.active {
+  background: $color-active-item;
+  cursor: pointer;
+}
+
+.city-item{
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+
+  .city-item-value:last-child{
+    color: $color-city-code;
+  }
+}
+
+.autocomplete-holder {
+  width: 100%;
+  height: 100%;
+}
+
+.autocomplete-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  &:first-child{
+    margin: 0 0 2px 0;
+  }
+
+  @include tablet {
+   &:first-child{
+     margin-right: 2px;
+   }
+  }
+
+  @include desktop {
+    &:last-child {
+      margin: 0 2px 0 0;
+    }
+  }
+}
+
+.autocomplete-input-holder{
+  position: relative;
+  width: 100%;
+}
+
+.has-border-radius-left{
+  border-radius: 4px 4px 0 0;
+
+  @include tablet {
+    border-radius: 4px 0 0 0;
+  }
+
+  @include desktop {
+    border-radius: 4px 0 0 4px;
+  }
+}
+
+.has-border-radius-right{
+
+  @include tablet {
+    border-radius: 0 4px 0 0;
+  }
+
+  @include desktop {
+    border-radius: 0;
+  }
+}
+

@@ -1,0 +1,253 @@
+{
+  "data": [
+    {
+      "type": "flight-offer",
+      "id": "1553700433623-2122654376",
+      "offerItems": [
+        {
+          "services": [
+            {
+              "segments": [
+                {
+                  "flightSegment": {
+                    "departure": {
+                      "iataCode": "MAD",
+                      "terminal": "2",
+                      "at": "2019-04-05T10:00:00+02:00"
+                    },
+                    "arrival": {
+                      "iataCode": "CDG",
+                      "terminal": "2F",
+                      "at": "2019-04-05T12:05:00+02:00"
+                    },
+                    "carrierCode": "AF",
+                    "number": "1001",
+                    "aircraft": {
+                      "code": "321"
+                    },
+                    "operating": {
+                      "carrierCode": "JN",
+                      "number": "1001"
+                    },
+                    "duration": "0DT2H5M"
+                  },
+                  "pricingDetailPerAdult": {
+                    "travelClass": "ECONOMY",
+                    "fareClass": "T",
+                    "availability": 9,
+                    "fareBasis": "T3WKES9"
+                  }
+                }
+              ]
+            },
+            {
+              "segments": [
+                {
+                  "flightSegment": {
+                    "departure": {
+                      "iataCode": "CDG",
+                      "terminal": "2F",
+                      "at": "2019-04-16T14:45:00+02:00"
+                    },
+                    "arrival": {
+                      "iataCode": "MAD",
+                      "terminal": "2",
+                      "at": "2019-04-16T16:50:00+02:00"
+                    },
+                    "carrierCode": "AF",
+                    "number": "1800",
+                    "aircraft": {
+                      "code": "321"
+                    },
+                    "operating": {
+                      "carrierCode": "JN",
+                      "number": "1800"
+                    },
+                    "duration": "0DT2H5M"
+                  },
+                  "pricingDetailPerAdult": {
+                    "travelClass": "ECONOMY",
+                    "fareClass": "T",
+                    "availability": 9,
+                    "fareBasis": "T3WKES9"
+                  }
+                }
+              ]
+            }
+          ],
+          "price": {
+            "total": "166.56",
+            "totalTaxes": "71.56"
+          },
+          "pricePerAdult": {
+            "total": "166.56",
+            "totalTaxes": "71.56"
+          }
+        }
+      ]
+    },
+    {
+      "type": "flight-offer",
+      "id": "1553700433623-706521789",
+      "offerItems": [
+        {
+          "services": [
+            {
+              "segments": [
+                {
+                  "flightSegment": {
+                    "departure": {
+                      "iataCode": "MAD",
+                      "terminal": "4",
+                      "at": "2019-04-05T11:35:00+02:00"
+                    },
+                    "arrival": {
+                      "iataCode": "ORY",
+                      "terminal": "1",
+                      "at": "2019-04-05T13:35:00+02:00"
+                    },
+                    "carrierCode": "IB",
+                    "number": "3406",
+                    "aircraft": {
+                      "code": "321"
+                    },
+                    "operating": {
+                      "carrierCode": "IB",
+                      "number": "3406"
+                    },
+                    "duration": "0DT2H0M"
+                  },
+                  "pricingDetailPerAdult": {
+                    "travelClass": "ECONOMY",
+                    "fareClass": "Q",
+                    "availability": 9,
+                    "fareBasis": "QDNNANB4"
+                  }
+                }
+              ]
+            },
+            {
+              "segments": [
+                {
+                  "flightSegment": {
+                    "departure": {
+                      "iataCode": "ORY",
+                      "terminal": "1",
+                      "at": "2019-04-16T14:20:00+02:00"
+                    },
+                    "arrival": {
+                      "iataCode": "MAD",
+                      "terminal": "4",
+                      "at": "2019-04-16T16:20:00+02:00"
+                    },
+                    "carrierCode": "IB",
+                    "number": "3405",
+                    "aircraft": {
+                      "code": "32A"
+                    },
+                    "operating": {
+                      "carrierCode": "IB",
+                      "number": "3405"
+                    },
+                    "duration": "0DT2H0M"
+                  },
+                  "pricingDetailPerAdult": {
+                    "travelClass": "ECONOMY",
+                    "fareClass": "N",
+                    "availability": 9,
+                    "fareBasis": "NDNNANB5"
+                  }
+                }
+              ]
+            }
+          ],
+          "price": {
+            "total": "155.40",
+            "totalTaxes": "48.40"
+          },
+          "pricePerAdult": {
+            "total": "155.40",
+            "totalTaxes": "48.40"
+          }
+        }
+      ]
+    }
+  ],
+  "dictionaries": {
+    "carriers": {
+      "6X": "AMADEUS SIX",
+      "UX": "AIR EUROPA",
+      "VY": "VUELING AIRLINES",
+      "JN": "JOON",
+      "AF": "AIR FRANCE",
+      "AZ": "ALITALIA S.P.A. IN A.S",
+      "IB": "IBERIA",
+      "NI": "PORTUGALIA",
+      "LH": "LUFTHANSA",
+      "LX": "SWISS INTERNATIONAL AIR LINES",
+      "TP": "TAP PORTUGAL",
+      "YW": "AIR NOSTRUM"
+    },
+    "currencies": {
+      "EUR": "EURO"
+    },
+    "aircraft": {
+      "319": "AIRBUS INDUSTRIE A319",
+      "320": "AIRBUS INDUSTRIE A320-100/200",
+      "321": "AIRBUS INDUSTRIE A321",
+      "332": "AIRBUS INDUSTRIE A330-200",
+      "777": "BOEING 777-200/300",
+      "CS1": "BOMBARDIER CS100",
+      "32A": "AIRBUS INDUSTRIE A320 SHARKLETS",
+      "CS3": "BOMBARDIER CS300",
+      "32S": "AIRBUS INDUSTRIE A318/A319/A320/A321",
+      "73H": "BOEING 737-800 (WINGLETS)",
+      "CRK": "CANADAIR REGIONAL JET 1000",
+      "E90": "EMBRAER 190"
+    },
+    "locations": {
+      "MAD": {
+        "subType": "AIRPORT",
+        "detailedName": "ADOLFO SUAREZ BARAJAS"
+      },
+      "ZRH": {
+        "subType": "AIRPORT",
+        "detailedName": "ZURICH AIRPORT"
+      },
+      "FCO": {
+        "subType": "AIRPORT",
+        "detailedName": "FIUMICINO"
+      },
+      "XCR": {
+        "subType": "AIRPORT",
+        "detailedName": "CHALONS VATRY"
+      },
+      "CDG": {
+        "subType": "AIRPORT",
+        "detailedName": "CHARLES DE GAULLE"
+      },
+      "LIS": {
+        "subType": "AIRPORT",
+        "detailedName": "AIRPORT"
+      },
+      "ORY": {
+        "subType": "AIRPORT",
+        "detailedName": "ORLY"
+      },
+      "MUC": {
+        "subType": "AIRPORT",
+        "detailedName": "MUNICH INTERNATIONAL"
+      },
+      "OPO": {
+        "subType": "AIRPORT",
+        "detailedName": "FRANCISCO SA CARNEIRO"
+      }
+    }
+  },
+  "meta": {
+    "links": {
+      "self": "https://test.api.amadeus.com/v1/shopping/flight-offers?origin=MAD&destination=PAR&departureDate=2019-04-05&returnDate=2019-04-16&adults=1&travelClass=ECONOMY&nonStop=false&max=50"
+    },
+    "currency": "EUR"
+  }
+}

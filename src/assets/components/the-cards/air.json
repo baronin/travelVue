@@ -1,0 +1,234 @@
+ {
+ flights: [
+          {
+            type: 'flight-offer',
+            id: '1553171649639--811981589',
+            offerItems: [
+              {
+                services: [
+                  {
+                    segments: [
+                      {
+                        flightSegment: {
+                          departure: {
+                            iataCode: 'EWR',
+                            terminal: 'C',
+                            at: '2019-08-01T14:40:00-04:00',
+                          },
+                          arrival: {
+                            iataCode: 'IAD',
+                            at: '2019-08-01T16:14:00-04:00',
+                          },
+                          carrierCode: 'UA',
+                          number: '1992',
+                          aircraft: {
+                            code: '320',
+                          },
+                          operating: {
+                            carrierCode: 'UA',
+                            number: '1992',
+                          },
+                          duration: '0DT1H34M',
+                        },
+                        pricingDetailPerAdult: {
+                          travelClass: 'ECONOMY',
+                          fareClass: 'K',
+                          availability: 9,
+                          fareBasis: 'KHA00LGT',
+                        },
+                      },
+                      {
+                        flightSegment: {
+                          departure: {
+                            iataCode: 'IAD',
+                            at: '2019-08-01T17:40:00-04:00',
+                          },
+                          arrival: {
+                            iataCode: 'MAD',
+                            terminal: '1',
+                            at: '2019-08-02T07:40:00+02:00',
+                          },
+                          carrierCode: 'UA',
+                          number: '163',
+                          aircraft: {
+                            code: '752',
+                          },
+                          operating: {
+                            carrierCode: 'UA',
+                            number: '163',
+                          },
+                          duration: '0DT8H0M',
+                        },
+                        pricingDetailPerAdult: {
+                          travelClass: 'ECONOMY',
+                          fareClass: 'K',
+                          availability: 9,
+                          fareBasis: 'KHA00LGT',
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    segments: [
+                      {
+                        flightSegment: {
+                          departure: {
+                            iataCode: 'MAD',
+                            terminal: '1',
+                            at: '2019-08-03T09:00:00+02:00',
+                          },
+                          arrival: {
+                            iataCode: 'YYZ',
+                            terminal: '1',
+                            at: '2019-08-03T11:10:00-04:00',
+                          },
+                          carrierCode: 'UA',
+                          number: '8355',
+                          aircraft: {
+                            code: '789',
+                          },
+                          operating: {
+                            carrierCode: 'AC',
+                            number: '8355',
+                          },
+                          duration: '0DT8H10M',
+                        },
+                        pricingDetailPerAdult: {
+                          travelClass: 'ECONOMY',
+                          fareClass: 'K',
+                          availability: 9,
+                          fareBasis: 'KHA00LGT',
+                        },
+                      },
+                      {
+                        flightSegment: {
+                          departure: {
+                            iataCode: 'YYZ',
+                            terminal: '1',
+                            at: '2019-08-03T14:40:00-04:00',
+                          },
+                          arrival: {
+                            iataCode: 'LGA',
+                            terminal: 'B',
+                            at: '2019-08-03T16:11:00-04:00',
+                          },
+                          carrierCode: 'UA',
+                          number: '8422',
+                          aircraft: {
+                            code: '320',
+                          },
+                          operating: {
+                            carrierCode: 'AC',
+                            number: '8422',
+                          },
+                          duration: '0DT1H31M',
+                        },
+                        pricingDetailPerAdult: {
+                          travelClass: 'ECONOMY',
+                          fareClass: 'K',
+                          availability: 9,
+                          fareBasis: 'KHA00LGT',
+                        },
+                      },
+                    ],
+                  },
+                ],
+                price: {
+                  total: '430.71',
+                  totalTaxes: '394.71',
+                },
+                pricePerAdult: {
+                  total: '430.71',
+                  totalTaxes: '394.71',
+                },
+              },
+            ],
+          },
+          flight2: {
+            type: 'flight-offer',
+            id: '1553171649639--1245552458',
+            offerItems: [
+              {
+                services: [
+                  {
+                    segments: [
+                      {
+                        flightSegment: {
+                          departure: {
+                            iataCode: 'JFK',
+                            terminal: '7',
+                            at: '2019-08-01T17:05:00-04:00',
+                          },
+                          arrival: {
+                            iataCode: 'MAD',
+                            terminal: '4S',
+                            at: '2019-08-02T06:15:00+02:00',
+                          },
+                          carrierCode: 'AY',
+                          number: '5654',
+                          aircraft: {
+                            code: '359',
+                          },
+                          operating: {
+                            carrierCode: 'IB',
+                            number: '5654',
+                          },
+                          duration: '0DT7H10M',
+                        },
+                        pricingDetailPerAdult: {
+                          travelClass: 'ECONOMY',
+                          fareClass: 'O',
+                          availability: 9,
+                          fareBasis: 'OKN8Z0B5',
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    segments: [
+                      {
+                        flightSegment: {
+                          departure: {
+                            iataCode: 'MAD',
+                            terminal: '4S',
+                            at: '2019-08-03T16:50:00+02:00',
+                          },
+                          arrival: {
+                            iataCode: 'JFK',
+                            terminal: '7',
+                            at: '2019-08-03T18:40:00-04:00',
+                          },
+                          carrierCode: 'BA',
+                          number: '4269',
+                          aircraft: {
+                            code: '359',
+                          },
+                          operating: {
+                            carrierCode: 'IB',
+                            number: '4269',
+                          },
+                          duration: '0DT7H50M',
+                        },
+                        pricingDetailPerAdult: {
+                          travelClass: 'ECONOMY',
+                          fareClass: 'O',
+                          availability: 9,
+                          fareBasis: 'ONN0Z0B5',
+                        },
+                      },
+                    ],
+                  },
+                ],
+                price: {
+                  total: '421.70',
+                  totalTaxes: '391.70',
+                },
+                pricePerAdult: {
+                  total: '421.70',
+                  totalTaxes: '391.70',
+                },
+              },
+            ],
+          },
+        }
+	}

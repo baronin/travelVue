@@ -1,0 +1,60 @@
+.counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+}
+
+.passenger-control-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100px;
+}
+
+.is-btn-counter {
+  padding: 0;
+  background-color: inherit;
+  color: $color-white;
+}
+
+.is-minus,
+.is-plus {
+  position: relative;
+  width: 33px;
+  height: 33px;
+  border: 1px solid $color-dark-main;
+  border-radius: 18px;
+  cursor: pointer;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 10px;
+
+    width: 11px;
+    height: 1px;
+    background: $color-dark-main;
+  }
+}
+
+.is-plus::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  transform: rotate(90deg);
+
+  width: 11px;
+  height: 1px;
+  background: $color-dark-main;
+}
+
+.is-minus:disabled,
+.is-plus:disabled{
+  border-color: $color-gray-light;
+  &:before,
+  &:after {
+    background-color: $color-gray-light;
+  }
+}

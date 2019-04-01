@@ -1,0 +1,106 @@
+.ticket-wrapper {
+  span {
+    font-size: $font-size-small-extra;
+    color: $color-text-light;
+  }
+
+  .flight-offer {
+    margin-bottom: 20px;
+
+  }
+}
+
+.result-wrapper {
+  background-color: $color-white;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+
+  @include tablet {
+    border-radius: 4px;
+  }
+
+  @include tablet-large {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+}
+
+.ticket-content {
+  padding: 20px;
+
+  @include tablet-large {
+    width: 100%;
+  }
+
+  .ticket-body-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 33%;
+    margin-right: 5px;
+    word-break: break-word;
+
+    &:first-child {
+      flex-direction: row;
+      flex-basis: 50%;
+    }
+
+    &:last-child {
+      flex-basis: 20%;
+      flex-grow: 0;
+    }
+
+    .logo-airline {
+      margin-right: 10px;
+    }
+
+    .ticket-range-time {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.ticket-price-wrap {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  border-top: 1px solid $color-gray-light;
+
+  @include tablet-large {
+    flex-direction: column;
+    border-top: 0;
+    border-left: 1px solid $color-gray-light;
+
+  }
+
+  .ticket-price {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 5px 10px;
+    }
+
+    @include tablet-large {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      p {
+        margin-left: 0;
+      }
+    }
+
+  }
+}
+

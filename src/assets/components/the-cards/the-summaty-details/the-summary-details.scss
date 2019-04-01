@@ -1,0 +1,73 @@
+.btn-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.flight-info {
+  position: relative;
+  background-color: $color-white;
+}
+
+.flight-info-top {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #E0E1E7;
+
+  span {
+    margin-left: 10px;
+  }
+}
+
+.ticket-main-outbound {
+  padding: 20px;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  margin-bottom: 20px;
+
+  &:nth-child(2) {
+    justify-content: flex-start;
+    align-items: end;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .about-company-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.segment-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px;
+
+  .logo-link {
+    display: inline-block;
+    margin-left: -55px;
+  }
+}
+
+.transplant-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 86%;
+  margin-left: auto;
+  padding: 10px 20px;
+  background-color: $color-gray-light;
+
+  .transplant-info-text {
+
+  }
+}
