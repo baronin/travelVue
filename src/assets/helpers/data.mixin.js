@@ -3,8 +3,8 @@ export default {
     name: "dataMixin",
     data: function () {
         return {
-            getData: function (dataUrl) {
-                return axios.get(dataUrl);
+            getDataFromMixin: function (options) {
+                return axios(options);
             }
         }
     }

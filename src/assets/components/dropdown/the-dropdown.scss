@@ -1,55 +1,58 @@
 .dropdown-wrap {
   position: relative;
+  width: 100%;
+
+  @include desktop {
+    margin-right: 2px;
+  }
 }
+
 .dropdown-text {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   width: 100%;
+  height: 100%;
   padding: 14px 12px;
   border: 2px solid transparent;
+  border-radius: 0 0 4px 4px;
   background-color: $color-white;
+
+  white-space: nowrap;
   cursor: pointer;
-  &:hover,
-  &:focus {
-    border: 2px solid $color-yellow;
+  outline-color: $color-blue-medium;
+
+  @include tablet {
+    border-radius: 0 0 4px 0;
   }
-  @include desktop {}
+
+  @include desktop {
+    border-radius: 0 4px 4px 0;
+  }
+
+  &:focus {
+    border: 2px solid $color-blue-medium;
+  }
+
   margin-right: 2px;
 }
-
-/*.selected-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 12px;
-  border: 2px solid transparent;
-  outline-color: $color-yellow;
-  background-color: $color-white;
-  cursor: pointer;
-  &:hover,
-  &:focus {
-    border: 2px solid $color-yellow;
-  }
-
-  .dropdown-text {
-    margin-right: 20px;
-    word-break: break-all;
-  }
-}*/
 
 .additional-fields-inner-wrap {
   position: absolute;
   top: 50px;
   left: 0;
   width: 100%;
+  margin-top: 2px;
   padding: 20px;
   background-color: $color-white;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 
   z-index: 1;
+
   @include desktop {
-    width: calc(100% + 20px);
+    width: 100%;
   }
 
   .passenger-row {
@@ -61,16 +64,15 @@
   }
 }
 
-.btn-dropdown {
+.is-btn-dropdown {
   width: 10px;
   height: 10px;
-  margin-right: 12px;
-
+  padding: 0;
   background: url("../../img/btn/arrow-down-gray.png") no-repeat center;
   cursor: pointer;
 
   &:focus {
-    outline-color: $color-yellow;
+    outline-color: $color-blue-medium;
   }
 
   &-active {

@@ -1,18 +1,15 @@
 <template>
-  <div class="container-form">
-    <form action="" class="form bg-blue-grey">
-      <div class="input-wrap">
-        <tabs>
-          <tab  name="Round Trip">
-            <round-trip></round-trip>
-          </tab>
+  <div class="container-form bg-blue-grey">
+    <tabs>
+      <tab name="Round trip">
+        <round-trip></round-trip>
+      </tab>
+      <tab name="One way">
+        <the-cards/>
+        One Way's content will be here
+      </tab>
+    </tabs>
 
-          <tab name="One Way">
-            One Way's content will be here
-          </tab>
-        </tabs>
-      </div>
-    </form>
   </div>
 </template>
 
@@ -20,9 +17,10 @@
   import './_the-form.scss';
   import {Tabs, Tab} from 'vue-tabs-component';
   import RoundTrip from "../round-trip/round-trip";
+  import TheCards from "../the-cards/the-cards";
 
   export default {
     name: "the-form",
-    components: {RoundTrip, Tabs, Tab}
+    components: {TheCards, RoundTrip, Tabs, Tab}
   }
 </script>
