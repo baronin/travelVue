@@ -90,15 +90,14 @@
     data() {
       return {
         dataForApi: {
-          // TODO remove preselected data
           destinationCity: {
-            cityName: 'Madrid(MAD)',
-            cityCode: 'MAD',
+            cityName: '',
+            cityCode: '',
             emptyInput: false,
           },
           originCity: {
-            cityName: 'London(LON)',
-            cityCode: 'LON',
+            cityName: '',
+            cityCode: '',
             emptyInput: false,
           },
           flightDates: {
