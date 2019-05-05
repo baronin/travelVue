@@ -20,4 +20,5 @@ export default {
   filteredArray: {
     data: [],
   },
+  filteredData: [],
 };

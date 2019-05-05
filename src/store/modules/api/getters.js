@@ -37,6 +37,14 @@ export default {
    * @param state
    * @returns {default.dataFromApi|(function(*))|default.dataFromApi|{}|any}
    */
+  filteredData(state) {
+    return state.filteredData;
+  },
+
+  /**
+   * @param state
+   * @returns {default.dataFromApi|(function(*))|default.dataFromApi|{}|any}
+   */
   filteredArrayForCounting(state) {
     const filterByAirports = (offer, data, codeName) => {
       let services = offer.offerItems[0].services;

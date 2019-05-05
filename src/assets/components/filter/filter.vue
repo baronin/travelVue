@@ -175,6 +175,7 @@
         <div class="filter-button">
           <the-button
             :modifier="[{'is-primary': true}]"
+            @button-click="setFilteredData"
           >Filter
           </the-button>
         </div>
@@ -463,6 +464,10 @@
         this.dataForFilter.total = this.priceValues;
         this.dataForFilter.duration = this.value;
         this.setFilters(JSON.parse(JSON.stringify(this.dataForFilter)));
+      },
+
+      setFilteredData() {
+        this.$store.dispatch('api/setFilteredData');
       },
     },
   };
