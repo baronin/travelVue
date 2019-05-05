@@ -35,9 +35,9 @@ export const getDataFromApi = ({ commit, dispatch, state }) => {
  */
 export const getSortByPrice = ({ state }) => {
   state.filteredArray.sort((a, b) =>
-      (+a.offerItems[0].price.total > +b.offerItems[0].price.total) ?
+      (+a.data.offerItems[0].price.total > +b.data.offerItems[0].price.total) ?
           1 :
-          ((+b.offerItems[0].price.total > +a.offerItems[0].price.total) ?
+          ((+b.data.offerItems[0].price.total > +a.data.offerItems[0].price.total) ?
               -1 :
               0));
 };

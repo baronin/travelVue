@@ -6,7 +6,7 @@
           :key="'display-on-page'"
       ></filters>
       <card-wrap v-if="dataFromApiExist && !isSpinnerShown"
-                 :dataFromAmadeusApi="filteredArray"
+                 :dataFromAmadeusApi="filteredArray.data"
                  :showOnPassengerInfoPage="false"
       ></card-wrap>
       <div class="not-found" v-if="!dataFromApiExist && !isSpinnerShown"

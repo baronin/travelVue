@@ -10,7 +10,8 @@
                    type="radio"
                    name="frequent"
                    value="withLuggage"
-                   v-model="dataForFilter.frequent">
+                   v-model="dataForFilter.frequent"
+            >
             <span @click="displayFloatingFilterButton" class="checkbox-custom"></span>
             <span class="label">Only with luggage</span>
           </label>
@@ -21,7 +22,8 @@
                    type="radio"
                    name="frequent"
                    value="nonStop"
-                   v-model="dataForFilter.frequent">
+                   v-model="dataForFilter.frequent"
+            >
             <span class="checkbox-custom"></span>
             <span class="label">Only nonstop</span>
           </label>
@@ -33,20 +35,22 @@
           <div class="range-value">
             <span>Flight duration</span>
             <span class="chosen-value"
-                  v-if="value < maxDuration">{{value | toHours}}</span>
+                  v-if="value < maxDuration"
+            >{{value | toHours}}</span>
             <span class="chosen-value"
-                  v-else>any</span>
+                  v-else
+            >any</span>
           </div>
           <div @mousedown="displayFloatingFilterButton">
             <vue-slider
-                ref="slider"
-                class="type-range"
-                v-model="value"
-                :value="maxDuration"
-                :max="maxDuration"
-                tooltip="none"
-                v-bind="options"
-                @change="filterDataChange"
+              ref="slider"
+              class="type-range"
+              v-model="value"
+              :value="maxDuration"
+              :max="maxDuration"
+              tooltip="none"
+              v-bind="options"
+              @change="filterDataChange"
             ></vue-slider>
           </div>
 
@@ -56,14 +60,14 @@
         <h4 class="filter-title">Stops</h4>
         <template v-for="stop in dataForFilter.stops">
           <div class="content-wrap"
-               :key="stop.value">
+               :key="stop.value"
+          >
             <label @click="displayFloatingFilterButton">
               <input class="checkbox"
                      type="checkbox"
                      name="stops"
                      :value="stop.code"
                      v-model="stop.isChecked"
-                     :checked="stop.isChecked"
                      @change="filterDataChange"
               >
               <span class="checkbox-custom"></span>
@@ -87,14 +91,14 @@
           </div>
           <div @mousedown="displayFloatingFilterButton">
             <vue-slider
-                ref="sliderPrice"
-                class="type-range"
-                v-model="priceValues"
-                :min="minPrice"
-                :max="maxPrice"
-                :enable-cross="false"
-                v-bind="priceOptions"
-                @drag-end="filterDataChange"
+              ref="sliderPrice"
+              class="type-range"
+              v-model="priceValues"
+              :min="minPrice"
+              :max="maxPrice"
+              :enable-cross="false"
+              v-bind="priceOptions"
+              @drag-end="filterDataChange"
             ></vue-slider>
           </div>
 
@@ -104,15 +108,16 @@
         <h4 class="filter-title">Airlines</h4>
         <template v-for="(airline, index) in dataForFilter.carrierCode">
           <div class="content-wrap"
-               v-if="index < variable" :key="airline.value">
+               v-if="index < variable" :key="airline.value"
+          >
             <label @click="displayFloatingFilterButton">
               <input class="checkbox"
                      type="checkbox"
                      name="Airlines"
                      :value="airline.code"
                      v-model="airline.isChecked"
-                     :checked="airline.isChecked"
-                     @change="filterDataChange">
+                     @change="filterDataChange"
+              >
               <span class="checkbox-custom"></span>
               <span class="label">{{airline.name}}</span>
             </label>
@@ -122,7 +127,8 @@
           <button type="button"
                   class="btn bg-none arrow"
                   :class="{'arrow-active': visible}"
-                  @click="showMoreAirlines">Show more
+                  @click="showMoreAirlines"
+          >Show more
           </button>
         </div>
       </div>
@@ -131,7 +137,8 @@
         <h5 class="filter-subtitle">Departure</h5>
         <template v-for="departItem in dataForFilter.departure">
           <div class="content-wrap"
-               :key="departItem.value">
+               :key="departItem.value"
+          >
             <label @click="displayFloatingFilterButton">
               <input class="checkbox"
                      @change="filterDataChange"
@@ -139,7 +146,8 @@
                      name="Airports"
                      :value="departItem.code"
                      :disabled="dataForFilter.departure.length === 1"
-                     v-model="departItem.isChecked">
+                     v-model="departItem.isChecked"
+              >
               <span class="checkbox-custom"></span>
               <span class="label">{{departItem.name}}</span>
             </label>
@@ -148,7 +156,8 @@
         <h5 class="filter-subtitle">Arrival</h5>
         <template v-for="item in dataForFilter.arrival">
           <div class="content-wrap"
-               :key="item.value">
+               :key="item.value"
+          >
             <label @click="displayFloatingFilterButton">
               <input class="checkbox"
                      type="checkbox"
@@ -157,7 +166,7 @@
                      :value="item.code"
                      :disabled="dataForFilter.arrival.length === 1"
                      v-model="item.isChecked"
-                     :checked="item.isChecked">
+              >
               <span class="checkbox-custom"></span>
               <span class="label">{{item.name}}</span>
               <br>
@@ -169,8 +178,8 @@
         <div class="filter-counter">{{filteredArrayForCounting.length}}</div>
         <div class="filter-button">
           <the-button
-              :modifier="[{'is-primary': true}]"
-              @button-click="getFilter">Filter
+            :modifier="[{'is-primary': true}]"
+          >Filter
           </the-button>
         </div>
       </div>
@@ -180,14 +189,14 @@
 
 <script>
   import moment from 'moment';
+  import VueSlider from 'vue-slider-component';
+  import 'vue-slider-component/theme/default.css';
+  import { mapActions, mapGetters } from 'vuex';
   import airlines from '../../jsons/airlines';
   import airports from '../../jsons/airports';
-  import VueSlider from 'vue-slider-component';
+  import '../the-button/_the-button.scss';
   import TheButton from '../the-button/the-button';
   import './_filter.scss';
-  import 'vue-slider-component/theme/default.css';
-  import '../the-button/_the-button.scss';
-  import { mapActions, mapGetters } from 'vuex';
 
   export default {
     name: 'filters',
@@ -195,7 +204,6 @@
     data() {
       return {
         elementPosition: '',
-        dataJson: '',
         airlinesList: airlines,
         airportsList: airports,
         dataForFilter: {
@@ -266,10 +274,7 @@
       };
     },
 
-    props: ['dataFromAmadeusApi'],
-
     created() {
-      this.getData();
       this.getPriceValues();
       this.getIataArrival();
       this.getArrivalAirports();
@@ -277,7 +282,6 @@
       this.getDepartAirports();
       this.getDuration();
       this.getAirlines();
-
     },
 
     computed: {
@@ -287,7 +291,6 @@
 
       ...mapGetters('api', [
         'dataFromApi',
-        'filteredArray',
         'filteredArrayForCounting',
       ]),
     },
@@ -296,9 +299,9 @@
       toHours(value) {
         value = moment.duration(value);
         if (value._data.hours === 0) {
-          return `${ value._data.minutes } m`;
+          return `${value._data.minutes} m`;
         } else {
-          return `${ value._data.hours } h ${ value._data.minutes } m`;
+          return `${value._data.hours} h ${value._data.minutes} m`;
         }
       },
     },
@@ -311,15 +314,6 @@
         this.elementPosition = event.currentTarget.offsetTop - 17;
         filterButton.style = this.elementPosition;
         filterButton.style = 'display: flex; top: ' + this.elementPosition + 'px;';
-      },
-      /**
-       * TODO it should update displayed data
-       */
-      getFilter() {
-        // this.getFilteredArrayForCounting();
-      },
-      getData() {
-        this.dataJson = this.dataFromApi;
       },
       showMoreAirlines() {
         this.visible = !this.visible;
@@ -339,7 +333,8 @@
         let dictionariesKeys = Object.keys(this.dataFromApi.dictionaries.carriers);
         for (let i = 0; i < this.dataFromApi.data.length; i++) {
           for (let j = 0; j < this.dataFromApi.data[i].offerItems[0].services.length; j++) {
-            for (let k = 0; k < this.dataFromApi.data[i].offerItems[0].services[j].segments.length; k++) {
+            for (let k = 0; k
+            < this.dataFromApi.data[i].offerItems[0].services[j].segments.length; k++) {
               let key = this.dataFromApi.data[i].offerItems[0].services[j].segments[k].flightSegment.carrierCode;
               arr.push(key);
             }
@@ -370,7 +365,7 @@
         const departArr = [];
         for (let i = 0; i < this.dataFromApi.data.length; i++) {
           departArr.push(
-              this.dataFromApi.data[i].offerItems[0].services[0].segments[0].flightSegment.departure.iataCode);
+            this.dataFromApi.data[i].offerItems[0].services[0].segments[0].flightSegment.departure.iataCode);
         }
 
         for (let i = 0; i < departArr.length; i++) {
@@ -383,9 +378,10 @@
       getIataArrival() {
         let arrivalArr = [];
         for (let i = 0; i < this.dataFromApi.data.length; i++) {
-          let targetSegment = this.dataFromApi.data[i].offerItems[0].services[0].segments.length - 1;
+          let targetSegment = this.dataFromApi.data[i].offerItems[0].services[0].segments.length
+            - 1;
           arrivalArr.push(
-              this.dataFromApi.data[i].offerItems[0].services[0].segments[targetSegment].flightSegment.arrival.iataCode);
+            this.dataFromApi.data[i].offerItems[0].services[0].segments[targetSegment].flightSegment.arrival.iataCode);
         }
         arrivalArr.sort();
         for (let i = 0; i < arrivalArr.length; i++) {
@@ -409,12 +405,12 @@
         }
       },
       getArrivalAirports() {
-        for (let cod in this.airportsList) {
+        for (let code in this.airportsList) {
           for (let key in this.obj) {
-            if (cod === key) {
+            if (code === key) {
               let arrivalObject = {};
-              arrivalObject.iataCode = cod;
-              arrivalObject.name = this.airportsList[cod].name;
+              arrivalObject.iataCode = code;
+              arrivalObject.name = this.airportsList[code].name;
               arrivalObject.isChecked = true;
               this.dataForFilter.arrival.push(arrivalObject);
             }
@@ -426,18 +422,18 @@
           for (let service in this.dataFromApi.data[i].offerItems[0].services) {
             if (this.dataFromApi.data[i].offerItems[0].services[service].segments.length > 1) {
               let departure = '',
-                  arrival = '',
-                  targetSegment = this.dataFromApi.data[i].offerItems[0].services[service].segments.length;
+                arrival = '',
+                targetSegment = this.dataFromApi.data[i].offerItems[0].services[service].segments.length;
               for (let segment in this.dataFromApi.data[i].offerItems[0].services[service].segments) {
-                if (segment == 0) {
+                if (segment === 0) {
                   departure = this.dataFromApi.data[i].offerItems[0].services[service].segments[segment].flightSegment.departure.at;
-                } else if (segment == targetSegment - 1) {
+                } else if (segment === targetSegment - 1) {
                   arrival = this.dataFromApi.data[i].offerItems[0].services[service].segments[segment].flightSegment.arrival.at;
                 }
               }
               let arrSec = moment.utc(arrival).valueOf(),
-                  depSec = moment.utc(departure).valueOf(),
-                  differenceInMs = arrSec - depSec;
+                depSec = moment.utc(departure).valueOf(),
+                differenceInMs = arrSec - depSec;
               this.unsortedDur.push(differenceInMs);
             } else {
               let dep = this.dataFromApi.data[i].offerItems[0].services[service].segments[0].flightSegment.departure.at;
@@ -458,7 +454,7 @@
             return 0;
         });
         let maxDuration = this.unsortedDur[0];
-        this.unsortedDur.forEach(function(val) {
+        this.unsortedDur.forEach(function (val) {
           maxDuration = Math.max(maxDuration, val);
         });
         this.maxDuration = Number(maxDuration);
@@ -472,7 +468,7 @@
         }
         unsortedArr.sort();
         let minPrice = unsortedArr[0], maxPrice = unsortedArr[0];
-        unsortedArr.forEach(function(val) {
+        unsortedArr.forEach(function (val) {
           minPrice = Math.min(minPrice, val);
           maxPrice = Math.max(maxPrice, val);
         });

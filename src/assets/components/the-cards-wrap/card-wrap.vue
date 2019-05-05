@@ -17,34 +17,36 @@
         </p>
         <div class="sort-dropdown-holder">
           <cool-select
-              :class="[{'sort-dropdown': true}]"
-              v-model="selected"
-              :items="sortItems"
-              :disableSearch="true"
-              @select="sortByPrice">
+            :class="[{'sort-dropdown': true}]"
+            v-model="selected"
+            :items="sortItems"
+            :disableSearch="true"
+            @select="sortByPrice"
+          >
           </cool-select>
         </div>
       </div>
     </div>
     <div v-for="(cardsData, index) in dataFromAmadeusApi"
          :key="`card_${index}`"
-         :id="index">
+         :id="index"
+    >
       <the-card
-          :flightCardsData="cardsData"
-          :getPriceTicket="getPriceTicket(cardsData)"
-          :dataFromAmadeusApi="dataFromAmadeusApi"
-          :showOnPassengerInfoPage="showOnPassengerInfoPage">
+        :flightCardsData="cardsData"
+        :getPriceTicket="getPriceTicket(cardsData)"
+        :showOnPassengerInfoPage="showOnPassengerInfoPage"
+      >
       </the-card>
     </div>
   </div>
 </template>
 
 <script>
+  import { CoolSelect } from 'vue-cool-select';
+  import { mapActions, mapGetters } from 'vuex';
+  import TheButton from '../the-button/the-button';
   import './_card-wrap.scss';
   import TheCard from './the-card/the-card';
-  import { mapActions, mapGetters } from 'vuex';
-  import { CoolSelect } from 'vue-cool-select';
-  import TheButton from '../the-button/the-button';
 
   export default {
     name: 'card-wrap',
@@ -83,10 +85,7 @@
         showFilterMobile: 'open',
       }),
       getPriceTicket(cardsData) {
-        if (cardsData.offerItems !== undefined) {
-          return cardsData.offerItems[0].price.total;
-        }
-        return 0;
+        return cardsData.offerItems[0].price.total;
       },
       sortByPrice(selectedSortItem) {
         if (selectedSortItem.title === 'Price') {

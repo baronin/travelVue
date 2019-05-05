@@ -1,4 +1,8 @@
 export default {
+  changeStylesForPassengerInfoPage(state) {
+    return state.changeStylesForPassengerInfoPage;
+  },
+
   changeStylesForResultPage(state) {
     return state.changeStylesForResultPage;
   },
