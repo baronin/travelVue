@@ -10,23 +10,7 @@ export default {
 
   filters: {
     frequent: [],
-    stops: [
-      {
-        code: 1,
-        name: 'Nonstop',
-        isChecked: true,
-      },
-      {
-        code: 2,
-        name: '1 stop',
-        isChecked: true,
-      },
-      {
-        code: 3,
-        name: ' 2+ stops',
-        isChecked: true,
-      },
-    ],
+    stops: [],
     departure: [],
     arrival: [],
     carrierCode: [],

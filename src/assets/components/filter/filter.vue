@@ -60,13 +60,12 @@
         <h4 class="filter-title">Stops</h4>
         <template v-for="stop in dataForFilter.stops">
           <div class="content-wrap"
-               :key="stop.value"
+               :key="stop.code"
           >
             <label @click="displayFloatingFilterButton">
               <input class="checkbox"
                      type="checkbox"
                      name="stops"
-                     :value="stop.code"
                      v-model="stop.isChecked"
                      @change="filterDataChange"
               >
@@ -114,7 +113,6 @@
               <input class="checkbox"
                      type="checkbox"
                      name="Airlines"
-                     :value="airline.code"
                      v-model="airline.isChecked"
                      @change="filterDataChange"
               >
@@ -144,7 +142,6 @@
                      @change="filterDataChange"
                      type="checkbox"
                      name="Airports"
-                     :value="departItem.code"
                      :disabled="dataForFilter.departure.length === 1"
                      v-model="departItem.isChecked"
               >
@@ -163,7 +160,6 @@
                      type="checkbox"
                      @change="filterDataChange"
                      name="Airports"
-                     :value="item.code"
                      :disabled="dataForFilter.arrival.length === 1"
                      v-model="item.isChecked"
               >
@@ -234,7 +230,7 @@
         visible: true,
         currentValue: 'any',
         maxDuration: null,
-        value: null,
+        value: 0,
         minPrice: '',
         maxPrice: '',
         priceOptions: {
@@ -329,36 +325,22 @@
         }
       },
       getAirlines() {
-        let arr = [];
+        let arr = this.dataFromApi.data.map(item => item.offerItems[0].services
+          .map(service => service.segments
+            .map(segment => segment.flightSegment.carrierCode)))
+          .flat(2);
         let dictionariesKeys = Object.keys(this.dataFromApi.dictionaries.carriers);
-        for (let i = 0; i < this.dataFromApi.data.length; i++) {
-          for (let j = 0; j < this.dataFromApi.data[i].offerItems[0].services.length; j++) {
-            for (let k = 0; k
-            < this.dataFromApi.data[i].offerItems[0].services[j].segments.length; k++) {
-              let key = this.dataFromApi.data[i].offerItems[0].services[j].segments[k].flightSegment.carrierCode;
-              arr.push(key);
-            }
-          }
-        }
-        let dictionary = dictionariesKeys.filter(item => {
-          for (let i = 0; i < arr.length; i++) {
-            if (item.indexOf(arr[i]) > -1) {
-              return true;
-            }
-          }
-          return false;
-        });
-        for (let code in this.airlinesList) {
-          for (let i = 0; i < dictionary.length; i++) {
-            if (code === dictionary[i]) {
-              let obj = {};
-              obj.code = dictionary[i];
-              obj.name = this.airlinesList[code];
-              obj.isChecked = true;
-              this.dataForFilter.carrierCode.push(obj);
-            }
-          }
-        }
+        this.dataForFilter.carrierCode = dictionariesKeys.filter(item => {
+            return arr.includes(item);
+          })
+          .reduce((arr, key) => {
+            arr.push({
+              code: key,
+              name: this.airlinesList[key],
+              isChecked: true,
+            });
+            return arr;
+          }, []);
       },
 //to take departure Iata code:
       getIataDeparture() {
@@ -455,7 +437,8 @@
         });
         let maxDuration = this.unsortedDur[0];
         this.unsortedDur.forEach(function (val) {
-          maxDuration = Math.max(maxDuration, val);
+          const fVal = val || 0;
+          maxDuration = Math.max(maxDuration, fVal);
         });
         this.maxDuration = Number(maxDuration);
         this.value = this.maxDuration;
@@ -479,7 +462,7 @@
       filterDataChange() {
         this.dataForFilter.total = this.priceValues;
         this.dataForFilter.duration = this.value;
-        this.setFilters(this.dataForFilter);
+        this.setFilters(JSON.parse(JSON.stringify(this.dataForFilter)));
       },
     },
   };
