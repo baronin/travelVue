@@ -1,0 +1,123 @@
+.ticket-wrapper {
+  margin: 0 -20px;
+  background-color: $color-white;
+  cursor: pointer;
+
+  @include tablet {
+    border-radius: 4px;
+    margin: 0;
+  }
+
+  @include desktop {
+    cursor: default;
+  }
+  span {
+    font-size: $font-size-small-extra;
+    color: $color-text-light;
+  }
+}
+
+.flight-offer-row {
+  margin-bottom: 20px;
+
+  .result-wrapper {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+
+    @include desktop {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .column-content {
+    padding: 20px;
+
+    @include tablet-large {
+      width: 100%;
+    }
+  }
+
+  .column-price {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    border-top: 1px solid $color-gray-light;
+
+    @include tablet {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    @include desktop {
+      flex-direction: column;
+      max-width: 180px;
+      width: 100%;
+      border-top: 0;
+      border-left: 1px solid $color-gray-light;
+    }
+
+    .ticket-price {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+
+      p {
+        white-space: nowrap;
+      }
+
+      span {
+        margin-right: 10px;
+      }
+      @include desktop {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        p {
+          margin-left: 0;
+        }
+
+        span {
+          margin-right: 0;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+.cards-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 0;
+}
+
+.sort-holder {
+  display: flex;
+  align-items: center;
+}
+
+
+.passenger-info-ticket {
+  display: flex;
+}
+
+.passenger-info-flights-holder {
+  .passenger-info-flights {
+    display: flex;
+    margin: 0 0 5px 10px;
+
+    &:first-child {
+      font-weight: 700;
+    }
+  }
+}
+
+.ticket-title {
+  margin: 0 0 20px;
+}
+
+
+
+
+
+

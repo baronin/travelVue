@@ -1,10 +1,76 @@
 .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    min-height: 500px;
-    
-    background: url("../../img/bg-main.png") no-repeat;
-    background-size: cover;
+   min-height: 500px;
+   height: 100%;
+   padding: 70px 0 200px;
+
+   background: url("../../img/bg-main.png") no-repeat;
+   background-size: cover;
+
+   @include tablet {
+     padding: 120px 0 400px;
+   }
+   @include desktop {
+     padding: 170px 0 300px;
+   }
+   @include widescreen {
+     padding: 220px 0 500px;
+   }
+ }
+
+.container-form {
+  padding: 20px;
+}
+
+.form {
+  width: 100%;
+  padding: 36px 20px;
+}
+
+.tabs-component-tabs {
+  display: flex;
+  margin-bottom: 20px;
+
+  li {
+    margin-right: 15px;
+  }
+}
+
+.tabs-component-tab {
+
+  a {
+    text-transform: capitalize;
+    color: white;
+    padding-bottom: 3px;
+    margin-right: 16px;
+    border-bottom: 2px solid transparent;
+  }
+}
+
+.tabs-component-tab-a{
+  margin-right: 0!important;
+}
+
+.is-active {
+  border-bottom: 2px solid $color-blue;
+}
+
+.autocomplete-holder {
+  display: flex;
+}
+
+.container-form-result {
+  padding: 20px 0;
+}
+
+.container-main-result{
+  padding: 0;
+}
+
+.main-result{
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+.main-result-bg{
+  background-color: $color-grey-strong;
 }

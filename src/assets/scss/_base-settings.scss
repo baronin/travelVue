@@ -1,60 +1,138 @@
 *, *:after, *:before {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-    font: {
-        family: 'Inter-Regular';
-        size: $font-size-small;
-    }
+  font: {
+    family: 'Inter-Regular';
+    size: $font-size-medium;
+  }
+  color: $color-dark-main;
 }
+
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
-    outline: none;
+  text-decoration: none;
+  outline: none;
 }
 
 img {
-    display: block;
+  display: block;
 }
 
-button {
-    border: none;
-    background-color: inherit;
-    color: $color-white;
+input::placeholder {
+  color: #C5C6CA;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  color: $color-white;
+  cursor: pointer;
+  outline-color: $color-blue-fifteen-opacity;
 }
 
 .is-visible {
-    display: block;
+  display: block;
 }
 
 .is-hidden {
-    display: none;
-}
-.flex {
-    display: flex;
-    flex-wrap: wrap;
+  display: none;
 }
 
 .container {
-    width: 100%;
-    padding: 0 20px;
-    margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
 
-    @media (min-width:$width-widescreen) {
-        max-width: 1180px;
-    }
+  @include widescreen {
+    max-width: 1180px;
+  }
 }
 
+// layout
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.columns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+// media
+@media all and (max-width: $width-tablet){
+  .display-none-mobile {
+    display: none!important;
+  }
+}
+
+@media all and (min-width: $width-tablet) and (max-width: $width-desktop){
+  .display-none-table {
+      display: none!important;
+  }
+}
+
+@media all and (min-width: $width-desktop){
+  .display-none-desktop {
+    display: none!important;
+  }
+}
+
+// background
 .bg-blue-grey {
-    background-color: $bg-forms;
+  background-color: $bg-forms;
 }
 
-.color-blue {
-    color: $color-blue;
+.bg-gray {
+  background-color: $color-blue-gray;
+}
+
+.bg-forms-result {
+  background-color: $color-blue-dark;
+}
+
+//color
+.has-text-grey {
+  color: $color-text-light!important;
+}
+.hes-text-green {
+  color: $color-green-light!important;
+}
+.has-text-info {
+  color: $color-red-light!important;
+}
+
+// font-size
+.is-size-extra-large {
+  font-size: $font-size-small-extra;
+}
+.is-size-medium {
+  font-size: $font-size-medium;
+}
+.is-size-medium-large {
+  font-size: $font-size-medium-large;
+}
+.is-size-large {
+  font-size: $font-size-large;
+}
+
+// font-weight
+.has-text-weight-bold {
+  font-weight: bold;
 }

@@ -1,0 +1,134 @@
+.form {
+  background-color: $color-white;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+  @include tablet-large {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border-bottom: 1px solid $color-gray-light;
+
+    .column {
+      width: 100%;
+      flex-basis: 0;
+      flex-grow: 1;
+    }
+  }
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    margin-bottom: 18px;
+    font-size: $font-size-medium-large;
+    font-weight: bold;
+  }
+
+  .bg-blue {
+    display: block;
+    padding: 4px 8px;
+    margin-bottom: 35px;
+    font-size: $font-size-small-extra;
+    letter-spacing: 0.9px;
+    background-color: $color-blue-fifteen-opacity;
+    border-radius: 4px;
+  }
+
+  .row {
+    flex-direction: column;
+    @include tablet-large {
+      flex-direction: row;
+    }
+
+    .column {
+      @include tablet-large {
+        margin-right: 16px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+
+}
+
+.contact-info {
+  margin-bottom: 20px;
+  border-bottom: 1px solid $color-gray-light;
+
+  .column {
+    margin-bottom: 32px;
+  }
+}
+
+
+.form-group-label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.form-group-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $color-gray-light;
+  border-radius: 4px;
+}
+
+
+
+.field .field-input {
+  min-height: auto !important;
+  height: auto !important;
+  padding: 10px !important;
+  font-size: 14px !important;
+  border: 1px solid $color-gray-light !important;
+}
+
+.vue-phone-number-input .input-phone-number input:focus {
+  outline: 2px solid rgba(77, 144, 254, 0.4) !important;
+
+}
+
+.country-selector.has-value .field-label {
+  display: none;
+}
+
+.country-selector .field-country-flag {
+  top: 12px !important;
+}
+
+.country-selector.has-value .field-input {
+  padding-left: 34px !important;
+}
+
+.vue-phone-number-input .select-country-container {
+  min-width: 50px !important;
+  max-width: 88px !important;
+}
+
+.passenger-info-main-aside {
+  max-width: 310px;
+}
+
+.passenger-info-holder {
+  display: flex;
+  padding: 0 0 20px;
+}
+
+.passenger-info-main {
+  width: 100%;
+
+  @include desktop {
+    padding: 0 20px 0 0;
+  }
+}
+
+.pages-steps-holder {
+  display: flex;
+  padding: 20px 0;
+}
+
+

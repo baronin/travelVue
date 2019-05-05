@@ -1,0 +1,92 @@
+.flight-info-wrap {
+  position: relative;
+}
+
+.button-wrap {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 12px;
+  right: 20px;
+
+  .is-close {
+      position: relative;
+      padding: 10px;
+      background: none;
+      border: none;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        display: block;
+        width: 1px;
+        height: 21px;
+        background-color: $color-gray-medium;
+        transform: rotate(45deg);
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        display: block;
+        width: 1px;
+        height: 21px;
+        background-color: $color-gray-medium;
+        transform: rotate(-45deg);
+      }
+  }
+}
+
+.flights-result-row {
+
+  .flight-info-top {
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: $color-gray-light;
+
+    @include desktop {
+      justify-content: flex-start;
+      align-items: baseline;
+    }
+
+    h3 {
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    span {
+      margin-left: 10px;
+    }
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+
+  .column-date {
+    display: none;
+
+    @include tablet-large {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 140px;
+      padding: 20px;
+      text-align: right;
+    }
+  }
+}
+
+
+
+
+
+
+

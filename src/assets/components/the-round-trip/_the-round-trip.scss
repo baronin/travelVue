@@ -1,0 +1,66 @@
+.round-trip {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+
+  @include desktop {
+    flex-wrap: nowrap;
+  }
+}
+
+.form-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  margin-bottom: 2px;
+
+  &:first-child {
+    z-index: 1;
+  }
+
+  @include tablet {
+    flex-direction: row;
+  }
+
+  @include desktop {
+    width: auto;
+    flex-wrap: nowrap;
+
+    &:last-child {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.form-field {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid transparent;
+  font-size: $font-size-medium;
+  outline-color: $color-blue-medium;
+
+  @include tablet {
+    height: 100%;
+    margin: 0 2px 0 0;
+  }
+
+  &:focus {
+    border: 2px solid $color-blue-medium;
+  }
+}
+
+.warning-message {
+  position: absolute;
+  color: $color-red-light;
+}
+
+.warning-input-border {
+  border: 2px solid $color-red-light !important;
+}
+
+
+
+
