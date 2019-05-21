@@ -1,0 +1,51 @@
+.padding-bottom {
+  padding-bottom: 100px;
+}
+
+.circle-accept {
+
+
+
+}
+
+.review-wrap {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 665px;
+  background-color: $color-white;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+
+  img {
+    max-width: 106px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: $font-size-large-extra;
+    margin-bottom: 24px;
+    padding: 0 20px;
+
+    @include tablet {
+      padding: 0;
+    }
+  }
+
+  .flight-info {
+    margin-bottom: 14px;
+
+    h3 {
+      font-size: $font-size-medium-large;
+      font-weight: bold;
+    }
+  }
+
+  .reference-number {
+    font-size: $font-size-medium;
+    color: $color-text-light;
+    margin-bottom: 120px;
+  }
+}

@@ -1,0 +1,151 @@
+button {
+  cursor: pointer;
+}
+
+.wrapper {
+  width: 100%;
+
+  .columns {
+    padding: 12px 0;
+
+    .column {
+      display: flex;
+      width: 50%;
+      margin-right: 5px;
+      &:last-child {
+        margin-right: 0;
+
+        @include tablet {
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+
+          .sort-by {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      p {
+        margin-bottom: 5px;
+        @include tablet {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .is-secondary {
+      padding: 10px 24px;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 38%;
+        right: 15px;
+        width: 10px;
+        height: 10px;
+        background: url(../../img/btn/arrow-down-blue.png) no-repeat center;
+      }
+    }
+  }
+}
+
+
+
+.is-arrow {
+  display: none;
+  width: 100%;
+  padding: 5px 0;
+  border-radius: 0 0 2px 2px;
+  background-color: $color-gray-light;
+  cursor: pointer;
+
+  @include desktop {
+    display: block;
+    width: auto;
+    padding: 0 10px;
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.arrow-down {
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  border: solid $color-blue-medium;
+  border-width: 0 1.25px 1.25px 0;
+}
+
+.border-radius {
+  border-bottom-right-radius: 0;
+}
+
+.is-arrows {
+  border-color: $color-dark-main;
+  transform: rotate(225deg);
+}
+
+.sort-dropdown {
+  min-width: 120px !important;
+
+  .IZ-select__input {
+    width: 100% !important;
+    padding: 0;
+    font-size: $font-size-medium;
+    line-height: 18px!important;
+
+    background-color: $color-blue-shade-light;
+    border: none!important;
+    box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.1);
+    @include tablet {
+      width: 120px!important;
+    }
+
+    input {
+      color: $color-blue-medium!important;
+      font-weight: bold!important;
+      padding: 10px !important;
+      line-height: 16px!important;
+
+      @include tablet {
+        padding: 10px !important;
+        font-weight: normal!important;
+      }
+    }
+
+    &:before {
+      top: 38%!important;
+      width: 10px !important;
+      background-image: url(../../img/btn/arrow-down-blue.png);
+    }
+  }
+
+  .IZ-select__menu {
+    text-align: center;
+    top: 38px !important;
+    margin: 2px 0 0 0;
+    border-radius: 4px;
+
+    .IZ-select__menu-items {
+      &:hover {
+        transition: 0ms;
+        background: $color-blue-alice !important;
+      }
+      &:hover .IZ-select__item--selected {
+        transition: 0ms;
+        background: $color-blue-alice !important;
+      }
+      &:not(:hover) {
+        transition: 0ms;
+      }
+      &:not(:hover) .IZ-select__item--selected {
+        transition: 0ms;
+      }
+
+      .IZ-select__item--selected {
+        padding: 10px 14px !important;
+        text-align: center;
+        background: #fff;
+      }
+    }
+  }
+}

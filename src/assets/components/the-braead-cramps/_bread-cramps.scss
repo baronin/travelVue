@@ -1,0 +1,42 @@
+.bread-cramps-holder{
+  display: flex;
+  padding: 15px 0;
+}
+
+.bread-cramps{
+  display: flex;
+  align-items: center;
+
+}
+
+ .numeration-of-pages{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background-color: $color-gray-light;
+  font-size: 10px;
+}
+
+.pages-names{
+  margin: 0  0 0 5px;
+  cursor: pointer;
+}
+
+.active-page-name{
+  color: $color-dark-main;
+}
+
+.bread-cramps-holder{
+  color: $color-text-light
+}
+
+.bread-cramps-arrows{
+  margin: 0 5px;
+  color: $color-text-light
+}
+
+
+

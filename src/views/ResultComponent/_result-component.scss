@@ -1,0 +1,25 @@
+.result-component {
+  display: flex;
+  flex-direction: column;
+
+  @include tablet {
+    flex-direction: row;
+  }
+}
+
+.half-circle-spinner {
+  position: absolute !important;
+  margin: 5% auto;
+}
+
+.spiner-holder {
+  display: flex;
+  justify-content: center;
+}
+
+.not-found {
+  text-align: center;
+  margin: 0 auto;
+  padding: 30% 0;
+  font-size: 20px;
+}

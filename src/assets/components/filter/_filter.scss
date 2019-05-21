@@ -1,0 +1,349 @@
+.filter {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  @include tablet {
+    position: static;
+    display: block;
+    max-width: 260px;
+    width: 100%;
+    margin-right: 20px;
+  }
+}
+
+.filter-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 10px 0;
+  background: #FBFBFB;
+  color: #363637;
+  border-radius: 4px;
+}
+
+.filter-item-wrap {
+  margin: 0 0 30px;
+
+  &:last-child {
+    margin-bottom: 60px;
+  }
+}
+
+.filter-title {
+  width: 100%;
+  padding: 0 20px 10px;
+  border-bottom: 1px solid #e0e1e780;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.filter-subtitle {
+  padding: 0 20px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.content-wrap {
+  width: 100%;
+  padding: 0 20px;
+  margin: 10px 0;
+  @include tablet {
+    max-width: 320px;
+  }
+
+  label {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.label {
+  margin-left: 30px;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkbox-custom,
+.label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.checkbox-custom {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #C5C6CF;
+  border-radius: 2px;
+}
+
+.checkbox:checked + .checkbox-custom {
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    display: block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid $color-blue;
+    border-radius: 2px;
+    background: $color-blue;
+  }
+
+  &:after {
+    content: '\2713';
+    position: relative;
+    left: -1px;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 10px;
+    font-weight: 600;
+    color: #fff;
+  }
+}
+
+.form-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 2px;
+
+  @media (min-width: $width-tablet) {
+    flex-direction: row;
+  }
+}
+
+.vue-slider-process {
+  background-color: $color-blue;
+  z-index: 0 !important;
+}
+
+.vue-slider-dot {
+  z-index: 0 !important;
+}
+
+.type-range {
+  margin: 10px 0;
+}
+
+.range-value {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 12px;
+  margin-bottom: 2px;
+  border: 2px solid transparent;
+  outline-width: 2px;
+  outline-color: $color-yellow;
+
+  &:hover {
+    border: 2px solid $color-yellow;
+  }
+
+  @media (min-width: $width-tablet) {
+    max-width: 259px;
+  }
+  @media (min-width: $width-desktop) {
+    max-width: 200px;
+    margin-right: 2px;
+  }
+}
+
+.slider {
+  height: 2px;
+  margin: 20px 0;
+  background: $color-blue;
+}
+
+.title-button-wrap {
+  position: relative;
+
+  .btn {
+    position: absolute;
+    right: 20px;
+    top: 3px;
+    padding: 0;
+    color: $color-blue;
+    background: transparent;
+  }
+}
+
+.btn-wrap {
+  padding: 0 20px;
+
+  .btn {
+    padding: 0;
+    font-size: 14px;
+    background: none;
+    color: $color-blue;
+  }
+
+  .btn {
+    padding-right: 15px;
+  }
+}
+
+.chosen-value {
+  color: #8B8D95;
+}
+
+.filter-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px;
+  font-weight: 700;
+  @include tablet {
+    padding-left: 0;
+
+    p {
+      display: none;
+    }
+
+    .is-close {
+      display: none;
+    }
+  }
+}
+
+.checkbox:disabled + .checkbox-custom {
+  &:before {
+    content: "";
+    border: 1px solid #D7D8DE;
+    background: #D7D8DE;
+  }
+}
+
+.filter-footer {
+  position: fixed;
+  bottom: 10px;
+  display: block;
+  align-items: center;
+
+  width: 100%;
+
+  background-color: $color-grey-strong-medium;
+  border-radius: 4px;
+
+  transition: .1s ease;
+
+  z-index: 5;
+
+  @include tablet {
+    position: absolute;
+    width: auto;
+  }
+
+  .filter-footer-test {
+    position: absolute;
+    left: 255px;
+    width: auto;
+    padding: 5px 5px 5px 0;
+
+    z-index: 1;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -7px;
+      width: 15px;
+      height: 15px;
+      background-color: $color-grey-strong-medium;
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  .filter-button {
+    margin: 0 20px;
+    box-shadow: inset 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+    @include tablet {
+      margin: 0;
+    }
+  }
+}
+
+
+.filter-counter {
+  display: none;
+  padding: 0 20px;
+  @include tablet {
+    display: block;
+  }
+}
+
+.filter-mobile-show {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+
+  width: 100%;
+  height: 100vh;
+  background-color: $color-grey-strong-medium;
+  overflow-y: auto;
+  z-index: 2;
+  @include tablet {
+    flex: auto;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    overflow-y: hidden;
+  }
+
+  .filter-top {
+    position: fixed;
+    width: 100%;
+    background-color: $color-white;
+    z-index: 1;
+    @include tablet {
+      position: static;
+      background-color: transparent;
+    }
+  }
+
+  .filter-wrapper {
+    margin-top: 70px;
+    @include tablet {
+      margin-top: 0;
+    }
+  }
+}
+
+.tablet {
+  display: none;
+
+  position: absolute;
+  bottom: auto;
+  left: 255px;
+  align-items: center;
+
+  padding: 5px 5px 5px 0;
+  border-radius: 4px;
+  background-color: $color-grey-strong-medium;
+  transition: .1s ease;
+  z-index: 1;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -7px;
+
+    width: 15px;
+    height: 15px;
+    background-color: $color-grey-strong-medium;
+
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
+

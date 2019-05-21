@@ -1,0 +1,35 @@
+.price-summary {
+  padding: 30px 20px;
+  margin-bottom: 20px;
+  background-color: $color-white;
+  border-radius: 4px;
+  @include desktop {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    margin-bottom: 16px;
+    font-size: $font-size-medium-large;
+    font-weight: bold;
+  }
+
+  span {
+    font-size: $font-size-small-extra;
+    color: $color-text-light;
+  }
+
+  .list-group {
+    margin-bottom: 16px;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      line-height: 20px;
+
+      &:last-child {
+        font-weight: bold;
+        color: $color-green-light;
+      }
+    }
+  }
+}

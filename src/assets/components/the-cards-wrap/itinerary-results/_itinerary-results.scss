@@ -1,0 +1,129 @@
+.column-flights {
+  position: relative;
+  width: 100%;
+}
+
+.flights-results-itinerary {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+  padding: 0 20px;
+
+  @include tablet-large {
+    width: auto;
+    margin-left: 0;
+  }
+
+  .column {
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px 0;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: -24px;
+      width: 10px;
+      height: 10px;
+      border: 2px solid #E7E7EC;
+      border-radius: 50%;
+    }
+
+    &:before {
+      top: 0;
+    }
+    &:after {
+      bottom: 0;
+    }
+  }
+
+  .line {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.about-company-info-wrap {
+  display: flex;
+  align-items: center;
+
+
+  .logo-link {
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: -35px;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+
+    @include tablet-large {
+      margin-left: 0;
+
+      img {
+        width: 16px;
+        height: 17px;
+      }
+    }
+
+
+  }
+
+  .about-company-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px 0;
+    text-transform: capitalize;
+  }
+
+  span.display-none-desktop {
+    white-space: nowrap;
+  }
+}
+
+.border-left {
+  position: absolute;
+  top: 15px;
+  left: -20px;
+  width: 2px;
+  height: calc(100% - 30px);
+  background: url("../../../img/border-left.jpg") repeat-y;
+}
+
+.transfer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  margin-right: -10px;
+  border-radius: 4px;
+  background-color: $color-blue-alice;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    height: calc(100% + 20px);
+    border-left: 2px $color-gray-light dotted;
+  }
+
+  .transfer-text {
+    word-break: break-word;
+
+    span:first-child {
+      margin-right: 10px;
+    }
+  }
+
+
+}
+
+

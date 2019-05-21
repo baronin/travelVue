@@ -1,23 +1,19 @@
 <template>
-    <div>
-        <header class="header">
-            <div class="container">
-                <the-logo/>
-            </div>
-        </header>
-    </div>
-
+    <header class="header">
+      <div class="container">
+        <router-link to="/">
+          <a href="#" class="link-logo" title="logotype">
+            <img src="@/assets/img/logo.svg" alt="logotype" class="logo">
+          </a>
+        </router-link>
+      </div>
+    </header>
 </template>
 
 <script>
-    import "./_the-header.scss";
-    import TheLogo from "../the-logo/the-logo";
-    export default {
-        name: "the-header",
-        components: {TheLogo}
-    }
+  import "./_the-header.scss";
+
+  export default {
+    name: "the-header",
+  }
 </script>
-
-<style scoped>
-
-</style>
