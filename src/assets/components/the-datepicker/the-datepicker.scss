@@ -98,7 +98,11 @@
   height: 30px !important;
   overflow: visible !important;
 
-  &.asd__day--in-range {
+  &--hovered{
+    background: $color-blue-super-light !important;
+  }
+
+  &--in-range {
     border-radius: 0 !important;
 
     &:hover {

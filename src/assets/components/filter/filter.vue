@@ -4,11 +4,9 @@
        :class="[{'filter-mobile-show': filterMobileShow}]">
     <div class="filter-top">
       <h3>Filter your results</h3>
-      <the-button @button-click="resetAll"
-                  :modifier="[{'link': true}]">
-        Reset All
+      <the-button @button-click="resetAll" v-if="showResetBtn()"
+                  :modifier="[{'link': true}]">Reset All
       </the-button>
-
       <p class="filter-count">{{filteredArrayForCounting.length}}</p>
       <the-button
           :modifier="[{'is-close': true}]"
@@ -19,15 +17,15 @@
     <div class="filter-wrapper">
       <div class="filter-holder">
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Frequent </h4>
+          <h4 class="filter-title">Frequent</h4>
           <div class="content-wrap">
             <label>
               <input class="checkbox"
                      type="checkbox"
                      name="frequent"
                      value="withLuggage"
-                     :disabled="true"
                      checked="true"
+                     :disabled="true"
               >
               <span class="checkbox-custom"></span>
               <span class="label">Only with luggage</span>
@@ -48,7 +46,10 @@
           </div>
         </div>
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Duration</h4>
+          <div class="title-button-wrap">
+            <h4 class="filter-title">Duration</h4>
+            <the-button v-if="value < maxDuration" @button-click="clearDuration()">Reset</the-button>
+          </div>
           <div class="content-wrap">
             <div class="range-value">
               <span>Flight duration</span>
@@ -72,7 +73,10 @@
           </div>
         </div>
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Stops</h4>
+          <div class="title-button-wrap">
+            <h4 class="filter-title">Stops</h4>
+            <the-button @button-click="clearStops" v-if="showStops"> Reset</the-button>
+          </div>
           <template v-for="stop in dataForFilter.stops">
             <div class="content-wrap"
                  :key="stop.value">
@@ -116,7 +120,10 @@
           </div>
         </div>
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Airlines</h4>
+          <div class="title-button-wrap">
+            <h4 class="filter-title">Airlines</h4>
+            <the-button @button-click="clearPrice"> Reset</the-button>
+          </div>
           <template v-for="(airline, index) in dataForFilter.carrierCode">
             <div class="content-wrap"
                  v-if="index < variable"
@@ -142,7 +149,10 @@
           </div>
         </div>
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Airports</h4>
+          <div class="title-button-wrap">
+            <h4 class="filter-title">Airports</h4>
+            <the-button @button-click="clearPrice"> Reset</the-button>
+          </div>
           <h5 class="filter-subtitle">Departure</h5>
           <template v-for="departItem in dataForFilter.departure">
             <div class="content-wrap"
@@ -167,11 +177,11 @@
               <label>
                 <input class="checkbox"
                        type="checkbox"
-                       name="Airports"
                        @change="filterData"
-                       v-model="item.isChecked"
+                       name="Airports"
+                       :value="item.code"
                        :disabled="dataForFilter.arrival.length === 1"
-                >
+                       :checked="item.isChecked">
                 <span class="checkbox-custom"></span>
                 <span class="label">{{item.name}}</span>
                 <br>
@@ -281,7 +291,7 @@
         obj: {},
         disable: false,
         toggleBtnFilter: true,
-        default: {},
+        showStops: false,
       };
     },
 
@@ -298,6 +308,7 @@
       this.getAirlines();
 
     },
+
     mounted() {
       this.closeFilterOnTablet();
     },
@@ -347,34 +358,25 @@
           this.variable = 4;
         }
       },
+      clearDuration() {
+        this.value = this.maxDuration;
+      },
+      clearStops() {
+        for (let i = 0; i < this.dataForFilter.stops.length; i++) {
+          if(this.dataForFilter.stops[i].isChecked === false) {
+            this.dataForFilter.stops[i].isChecked = true;
+            this.filterData();
+            console.log(this.showStops);
+            this.showStops = true;
+          }
+          console.log(this.showStops);
+        }
+      },
       clearPrice() {
         if (this.priceValues) {
           this.priceValues = [this.minPrice, this.maxPrice];
           this.filterData();
         }
-      },
-      resetAll() {
-        let objectData = this.dataForFilter;
-
-        this.clearPrice();
-        for (let i = 0; i < objectData.stops.length; i++) {
-          objectData.stops[i].isChecked = true;
-        }
-        for (let i = 0; i < objectData.carrierCode.length; i++) {
-          objectData.carrierCode[i].isChecked = true;
-        }
-        for (let i = 0; i < objectData.departure.length; i++) {
-          objectData.departure[i].isChecked = true;
-        }
-        for (let i = 0; i < objectData.arrival.length; i++) {
-          objectData.arrival[i].isChecked = true;
-        }
-        this.value = this.maxDuration;
-
-        this.dataForFilter.total = this.priceValues;
-        this.dataForFilter.duration = this.value;
-        this.setFilterData(this.dataForFilter);
-        this.cardsFilters();
       },
       getAirlines() {
         let arr = [];
@@ -499,7 +501,6 @@
           else
             return 0;
         });
-
         let maxDuration = this.unsortedDur[0];
         this.unsortedDur.forEach(function(val) {
           maxDuration = Math.max(maxDuration, val);
@@ -529,13 +530,65 @@
         this.setFilterData(this.dataForFilter);
         this.cardsFilters();
       },
+      /**
+       * btn resetAll
+       */
+      resetAll() {
+        let objectData = this.dataForFilter;
+        this.clearPrice();
+        for (let i = 0; i < objectData.stops.length; i++) {
+          objectData.stops[i].isChecked = true;
+        }
+        for (let i = 0; i < objectData.carrierCode.length; i++) {
+          objectData.carrierCode[i].isChecked = true;
+        }
+        for (let i = 0; i < objectData.departure.length; i++) {
+          objectData.departure[i].isChecked = true;
+        }
+        for (let i = 0; i < objectData.arrival.length; i++) {
+          objectData.arrival[i].isChecked = true;
+        }
+        this.value = this.maxDuration;
+        this.dataForFilter.total = this.priceValues;
+        this.dataForFilter.duration = this.value;
+        this.setFilterData(this.dataForFilter);
+        this.cardsFilters();
+        let filterBtnClose = document.querySelector('.filter-footer');
+        if (filterBtnClose.classList.contains('tablet')) {
+          filterBtnClose.style.display = 'none';
+        }
+      },
+      showResetBtn() {
+        let show = false;
+        //let checkboxArr = [];
+        let inputCheckbox = document.querySelectorAll('.checkbox');
+        /*inputCheckbox.forEach(input => {
+          checkboxArr.push(input);
+        });
+        console.log(checkboxArr);*/
+        /*checkboxArr.some(input => {
+              if (input.isChecked === false) {
+                return false;
+              }
+            },);*/
 
-      // button close
+        /* if (inputCheckbox[i].checked === true) {
+          return false
+         }*/
+
+        // }
+
+        for (let i = 0; i < inputCheckbox.length; i++) {
+          if (inputCheckbox[i].checked === false) {
+            return !show;
+          }
+        }
+        return show;
+      },
       closeButtonFilter() {
         document.body.classList.remove('overflow-hidden');
         this.showFilterMobile(!this.filterMobileShow);
       },
-
       getFilter() {
         this.getFilteredArrayForCounting();
 
@@ -546,7 +599,6 @@
         }
         document.body.classList.remove('overflow-hidden');
       },
-
       closeFilterOnTablet() {
         let filterButton = window.document.querySelector('.filter-footer'),
             filter = window.document.querySelector('.filter');
