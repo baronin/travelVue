@@ -84,10 +84,11 @@
                 <input class="checkbox"
                        type="checkbox"
                        name="stops"
-                       :value="stop.code"
                        v-model="stop.isChecked"
+                       :value="stop.code"
                        :checked="stop.isChecked"
                        @change="filterData"
+                       @click="showResetStops"
                 >
                 <span class="checkbox-custom"></span>
                 <span class="label">{{stop.name}}</span>
@@ -99,7 +100,7 @@
           <div class="title-button-wrap">
             <h4 class="filter-title">Price</h4>
 
-            <the-button @button-click="clearPrice">Reset</the-button>
+            <the-button @button-click="clearPrice" v-if="showResetPriceButton">Reset</the-button>
           </div>
           <div class="content-wrap">
             <div class="range-value"><span>Total price</span>
@@ -219,6 +220,7 @@
     components: { TheButton, VueSlider },
     data() {
       return {
+        showResetPriceButton: false,
         elementPosition: '',
         dataJson: '',
         airlinesList: airlines,
@@ -358,26 +360,7 @@
           this.variable = 4;
         }
       },
-      clearDuration() {
-        this.value = this.maxDuration;
-      },
-      clearStops() {
-        for (let i = 0; i < this.dataForFilter.stops.length; i++) {
-          if(this.dataForFilter.stops[i].isChecked === false) {
-            this.dataForFilter.stops[i].isChecked = true;
-            this.filterData();
-            console.log(this.showStops);
-            this.showStops = true;
-          }
-          console.log(this.showStops);
-        }
-      },
-      clearPrice() {
-        if (this.priceValues) {
-          this.priceValues = [this.minPrice, this.maxPrice];
-          this.filterData();
-        }
-      },
+
       getAirlines() {
         let arr = [];
         let dictionariesKeys = Object.keys(this.dataFromApi.dictionaries.carriers);
@@ -529,10 +512,38 @@
         this.dataForFilter.duration = this.value;
         this.setFilterData(this.dataForFilter);
         this.cardsFilters();
+        this.showResetPriceButton = this.showResetPrice();
       },
-      /**
-       * btn resetAll
-       */
+      clearDuration() {
+        this.value = this.maxDuration;
+      },
+      showResetStops() {
+        for (let i = 0; i < this.dataForFilter.stops.length; i++) {
+          if(this.dataForFilter.stops[i].isChecked === true) {
+            this.showStops = false
+          }
+          this.showStops = true;
+        }
+      },
+      clearStops() {
+        this.showStops = !this.showStops;
+        for (let i = 0; i < this.dataForFilter.stops.length; i++) {
+          if(this.dataForFilter.stops[i].isChecked === false) {
+            this.dataForFilter.stops[i].isChecked = true;
+            this.filterData();
+          }
+        }
+      },
+      showResetPrice() {
+        return this.priceValues[0] !== this.minPrice || this.priceValues[1] !== this.maxPrice;
+      },
+      clearPrice() {
+
+        if (this.priceValues) {
+          this.priceValues = [this.minPrice, this.maxPrice];
+          this.filterData();
+        }
+      },
       resetAll() {
         let objectData = this.dataForFilter;
         this.clearPrice();
@@ -560,24 +571,7 @@
       },
       showResetBtn() {
         let show = false;
-        //let checkboxArr = [];
         let inputCheckbox = document.querySelectorAll('.checkbox');
-        /*inputCheckbox.forEach(input => {
-          checkboxArr.push(input);
-        });
-        console.log(checkboxArr);*/
-        /*checkboxArr.some(input => {
-              if (input.isChecked === false) {
-                return false;
-              }
-            },);*/
-
-        /* if (inputCheckbox[i].checked === true) {
-          return false
-         }*/
-
-        // }
-
         for (let i = 0; i < inputCheckbox.length; i++) {
           if (inputCheckbox[i].checked === false) {
             return !show;
