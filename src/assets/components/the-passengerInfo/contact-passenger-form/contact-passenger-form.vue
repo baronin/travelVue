@@ -8,84 +8,135 @@
       <div class="row contact-info">
         <div class="column">
           <label class="form-group-label">Email</label>
-          <input id="email"
-                 :class="{'form-group--error': $v.email.$error }"
-                 class="form-group-input"
-                 type="text"
-                 @input="setEmailValue($event.target.value, 'email')"
-                 name="email"
-                 placeholder="Email"
-                 required>
+          <input
+            id="email"
+            :class="{'form-group--error': $v.email.$error }"
+            class="form-group-input"
+            type="text"
+            @input="setEmailValue($event.target.value, 'email')"
+            name="email"
+            placeholder="Email"
+            required
+          >
         </div>
         <div class="column">
-          <label for="number-input"
-                 class="form-group-label">Phone Number</label>
+          <label
+            for="number-input"
+            class="form-group-label"
+          >Phone Number</label>
           <vue-tel-input
-              :defaultCountry="'UA'"
-              :maxLen="15"
-              :disabledFormatting="true"
-              :enabledCountryCode="true"
-              :dropdownOptions="{disabledDialCode: true }"
-              :class="[{'form-phone-number': true, 'form-group--error': $v.phoneNumber.$error}]"
-              @onInput="setPhoneNumberValue"></vue-tel-input>
+            :defaultCountry="'UA'"
+            :maxLen="15"
+            :disabledFormatting="true"
+            :enabledCountryCode="true"
+            :dropdownOptions="{disabledDialCode: true }"
+            :class="[{'form-phone-number': true, 'form-group--error': $v.phoneNumber.$error}]"
+            @onInput="setPhoneNumberValue"
+          ></vue-tel-input>
         </div>
       </div>
-      <div :class="[{'passenger-info-wrap' : value.quantity > 0 }]" v-for="(value, i) in dataForApi.passengersTypes"
-           :key="i">
+      <div
+        :class="[{'passenger-info-wrap' : value.quantity > 0 }]"
+        v-for="(value, i) in dataForApi.passengersTypes"
+        :key="i"
+      >
         <div class="passenger-info-container" v-for="(item, index) in value.quantity" :key="index">
           <h3>Passenger {{getCountOfPassenger(item, i)}} – {{dataForApi.passengersTypes[i].title |
             getPassengerType}}</h3>
           <div class="row passenger-info">
             <div class="column">
               <label class="form-group-label">First Name</label>
-              <input id="firstName" class="form-group-input"
-                     :class="{ 'form-group--error':  $v['firstName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error }"
-                     v-model.trim="$v['firstName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].firstName.$model"
-                     type="text" placeholder="First Name">
+              <input
+                id="firstName" class="form-group-input"
+                :class="{ 'form-group--error':  $v['firstName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error }"
+                v-model.trim="$v['firstName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].firstName.$model"
+                type="text" placeholder="First Name"
+              >
             </div>
             <div class="column">
               <label class="form-group-label">Middle Name (optional)</label>
-              <input id="middleName" class="form-group-input" type="text" placeholder="Middle Name (optional)"
-                     required>
+              <input
+                id="middleName"
+                class="form-group-input"
+                type="text"
+                placeholder="Middle Name (optional)"
+                required
+              >
             </div>
             <div class="column">
               <label class="form-group-label">Last Name</label>
-              <input id="lastName" class="form-group-input"
-                     :class="{ 'form-group--error': $v['lastName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error }"
-                     v-model.trim="$v['lastName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].lastName.$model"
-                     type="text" placeholder="Last Name">
+              <input
+                id="lastName" class="form-group-input"
+                :class="{ 'form-group--error': $v['lastName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error }"
+                v-model.trim="$v['lastName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].lastName.$model"
+                type="text" placeholder="Last Name"
+              >
             </div>
           </div>
           <div class="row passenger-info">
             <div class="column">
               <label class="form-group-label">Date of Birth</label>
-              <input id="dateBirth"
-                     type="date"
-                     :class="{ 'form-group--error': $v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error  }"
-                     v-model.trim="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].dateOfBirth.$model"
-                     class="form-group-input">
-              <p v-if="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error && i === 0"
-                 class="warning-message">Date of birth must be no later than {{controlDateOfBirth}}</p>
-              <p v-if="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error && i === 1"
-                 class="warning-message">Date of birth must be between {{controlDateOfBirth}} and
+              <!-- <input-->
+              <!--   id="dateBirth"-->
+              <!--   type="date"-->
+              <!--   :class="{ 'form-group&#45;&#45;error': $v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error  }"-->
+              <!--   v-model.trim="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].dateOfBirth.$model"-->
+              <!--   class="form-group-input"-->
+              <!-- >-->
+              <div class="datepicker-trigger">
+                <input
+                  type="text"
+                  id="dateBirth"
+                  :class="{ 'form-group--error': $v[`dateOfBirth${value.title}`].$each.$iter[index].$error }"
+                  class="form-group-input"
+                  placeholder="Select dates"
+                  :value="formatDates($v[`dateOfBirth${value.title}`].$each.$iter[index].dateOfBirth.$model)"
+                  maxlength="10"
+                  readonly
+                >
+
+                <AirbnbStyleDatepicker
+                  :trigger-element-id="'dateBirth'"
+                  :mode="'single'"
+                  :fullscreen-mobile="false"
+                  :show-month-year-select="true"
+                  :years-for-select="20"
+                  :date-one="$v[`dateOfBirth${value.title}`].$each.$iter[index].dateOfBirth.$model"
+                  @date-one-selected="val => { $v[`dateOfBirth${value.title}`].$each.$iter[index].dateOfBirth.$model = val }"
+                />
+              </div>
+              <p
+                v-if="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error && i === 0"
+                class="warning-message"
+              >Date of birth must be no later than {{controlDateOfBirth}}</p>
+              <p
+                v-if="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error && i === 1"
+                class="warning-message"
+              >Date of birth must be between {{controlDateOfBirth}} and
                 {{controlDateForInfants}}</p>
-              <p v-if="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error && i === 2"
-                 class="warning-message">Date of birth must be no earlier than {{controlDateForInfants}}</p>
+              <p
+                v-if="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error && i === 2"
+                class="warning-message"
+              >Date of birth must be no earlier than {{controlDateForInfants}}</p>
             </div>
             <div class="column">
               <label class="form-group-label">{{ nameInput }}</label>
 
               <div :id="nameInput" class="fieldset-gender">
-                <radio-button :number-for-id="index"
-                              :name-for-id="dataForApi.passengersTypes[i].title"
-                              :name-label="nameLabel.male"
-                              :name-input="nameInput"
-                              :checked="true">
+                <radio-button
+                  :number-for-id="index"
+                  :name-for-id="dataForApi.passengersTypes[i].title"
+                  :name-label="nameLabel.male"
+                  :name-input="nameInput"
+                  :checked="true"
+                >
                 </radio-button>
-                <radio-button :number-for-id="index"
-                              :name-for-id="dataForApi.passengersTypes[i].title"
-                              :name-label="nameLabel.female"
-                              :name-input="nameInput">
+                <radio-button
+                  :number-for-id="index"
+                  :name-for-id="dataForApi.passengersTypes[i].title"
+                  :name-label="nameLabel.female"
+                  :name-input="nameInput"
+                >
                 </radio-button>
               </div>
               <!--<radio-button :number-for-id="index"
@@ -100,19 +151,22 @@
 
       </div>
     </form>
-    <the-button :modifier="[{'is-primary': true}]" @button-click="getReviewPage($v.validationGroup.$touch)">Book
+    <the-button
+      :modifier="[{'is-primary': true}]"
+      @button-click="getReviewPage($v.validationGroup.$touch)"
+    >Book
     </the-button>
   </div>
 </template>
 <script>
-
-  import './_contact-passenger-form.scss';
-  import RadioButton from '../../radio-button/radio-button';
-  import { required, minLength, maxLength, integer, email, helpers, minValue, maxValue } from 'vuelidate/lib/validators';
-  import TheButton from '../../the-button/the-button';
-  import VueTelInput from 'vue-tel-input';
-  import { mapState, mapMutations } from 'vuex';
+  import format from 'date-fns/format';
   import moment from 'moment';
+  import VueTelInput from 'vue-tel-input';
+  import { email, integer, maxLength, minLength, required } from 'vuelidate/lib/validators';
+  import { mapMutations, mapState } from 'vuex';
+  import RadioButton from '../../radio-button/radio-button';
+  import TheButton from '../../the-button/the-button';
+  import './_contact-passenger-form.scss';
 
   export default {
     name: 'contact-passenger-form',
@@ -147,9 +201,9 @@
 
         nameLabel: {
           male: 'Male',
-          female: 'Female'
+          female: 'Female',
         },
-        nameInput: 'Gender'
+        nameInput: 'Gender',
       };
     },
 
@@ -175,13 +229,19 @@
     },
     methods: {
       ...mapMutations(['SET_INVALID_FORMS_PASSENGER_INFO_PAGE']),
+      formatDates(date) {
+        return format(date, 'MM/DD/YYYY');
+      },
+
       getCountOfPassenger(value, index) {
-        if (index == 1) {
-          return this.dataForApi.passengersTypes[0].quantity + value;
-        } else if (index == 2) {
-          return this.dataForApi.passengersTypes[0].quantity + this.dataForApi.passengersTypes[1].quantity + value;
-        } else {
-          return value;
+        switch (index) {
+          case 1:
+            return this.dataForApi.passengersTypes[0].quantity + value;
+          case 2:
+            return this.dataForApi.passengersTypes[0].quantity
+              + this.dataForApi.passengersTypes[1].quantity + value;
+          default:
+            return value;
         }
       },
 
@@ -211,7 +271,8 @@
           if (this.dataForApi.passengersTypes[i].quantity) {
             for (let j = 0; j < this.validationGroup.length; j++) {
               if (this.validationGroup[j] == 'dateOfBirth' && i == 0) {
-                validationObject[this.validationGroup[j] + this.dataForApi.passengersTypes[i].title] = {
+                validationObject[this.validationGroup[j]
+                + this.dataForApi.passengersTypes[i].title] = {
                   required,
                   minLength: minLength(1),
                   $each: {
@@ -219,25 +280,29 @@
                       required,
                       minLength: minLength(1),
                       maxLength: maxLength(64),
-                      minValue: (currentValue) => moment(currentValue).isSameOrBefore(this.controlDateOfBirth),
+                      minValue: (currentValue) => moment(currentValue, 'YYYY-MM-DD')
+                        .isSameOrBefore(this.controlDateOfBirth),
                     },
                   },
                 };
               } else if (this.validationGroup[j] == 'dateOfBirth' && i == 1) {
-                validationObject[this.validationGroup[j] + this.dataForApi.passengersTypes[i].title] = {
+                validationObject[this.validationGroup[j]
+                + this.dataForApi.passengersTypes[i].title] = {
                   required,
                   minLength: minLength(1),
                   $each: {
                     [this.validationGroup[j]]: {
                       required,
                       minLength: minLength(1),
-                      maxValue: (currentValue) => moment(currentValue).isBetween(this.controlDateOfBirth,
+                      maxValue: (currentValue) => moment(currentValue, 'YYYY-MM-DD')
+                        .isBetween(this.controlDateOfBirth,
                           this.controlDateForInfants, null, '[]'),
                     },
                   },
                 };
               } else if (this.validationGroup[j] == 'dateOfBirth' && i == 2) {
-                validationObject[this.validationGroup[j] + this.dataForApi.passengersTypes[i].title] = {
+                validationObject[this.validationGroup[j]
+                + this.dataForApi.passengersTypes[i].title] = {
                   required,
                   minLength: minLength(1),
 
@@ -246,13 +311,15 @@
                       required,
                       minLength: minLength(1),
                       maxLength: maxLength(64),
-                      maxValue: (currentValue) => moment(currentValue).isBetween(this.controlDateForInfants, new Date(),
+                      maxValue: (currentValue) => moment(currentValue, 'YYYY-MM-DD')
+                        .isBetween(this.controlDateForInfants, new Date(),
                           null, '[]'),
                     },
                   },
                 };
               } else {
-                validationObject[this.validationGroup[j] + this.dataForApi.passengersTypes[i].title] = {
+                validationObject[this.validationGroup[j]
+                + this.dataForApi.passengersTypes[i].title] = {
                   required,
                   minLength: minLength(1),
                   $each: {
@@ -264,7 +331,8 @@
                   },
                 };
               }
-              validationObject.validationGroup.push(this.validationGroup[j] + this.dataForApi.passengersTypes[i].title);
+              validationObject.validationGroup.push(
+                this.validationGroup[j] + this.dataForApi.passengersTypes[i].title);
             }
           }
         }
