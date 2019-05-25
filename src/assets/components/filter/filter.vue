@@ -1,17 +1,22 @@
 <template>
-  <div class="filter"
-       v-resize="closeFilterOnTablet"
-       :class="[{'filter-mobile-show': filterMobileShow}]">
+  <div
+    class="filter"
+    v-resize="closeFilterOnTablet"
+    :class="[{'filter-mobile-show': filterMobileShow}]"
+  >
     <div class="filter-top">
       <h3>Filter your results</h3>
-      <the-button @button-click="resetAll" v-if="showResetBtn()"
-                  :modifier="[{'link': true}]">Reset All
+      <the-button
+        @button-click="resetAll" v-if="showResetBtn()"
+        :modifier="[{'link': true}]"
+      >Reset All
       </the-button>
       <p class="filter-count">{{filteredArrayForCounting.length}}</p>
       <the-button
-          :modifier="[{'is-close': true}]"
-          :class="[{'is-hidden': !filterMobileShow}]"
-          @button-click="closeButtonFilter()">
+        :modifier="[{'is-close': true}]"
+        :class="[{'is-hidden': !filterMobileShow}]"
+        @button-click="closeButtonFilter()"
+      >
       </the-button>
     </div>
     <div class="filter-wrapper">
@@ -20,12 +25,13 @@
           <h4 class="filter-title">Frequent</h4>
           <div class="content-wrap">
             <label>
-              <input class="checkbox"
-                     type="checkbox"
-                     name="frequent"
-                     value="withLuggage"
-                     checked="true"
-                     :disabled="true"
+              <input
+                class="checkbox"
+                type="checkbox"
+                name="frequent"
+                value="withLuggage"
+                checked="true"
+                :disabled="true"
               >
               <span class="checkbox-custom"></span>
               <span class="label">Only with luggage</span>
@@ -33,12 +39,13 @@
           </div>
           <div class="content-wrap">
             <label>
-              <input class="checkbox"
-                     type="checkbox"
-                     name="frequent"
-                     value="nonStop"
-                     :disabled="true"
-                     checked="true"
+              <input
+                class="checkbox"
+                type="checkbox"
+                name="frequent"
+                value="nonStop"
+                :disabled="true"
+                checked="true"
               >
               <span class="checkbox-custom"></span>
               <span class="label">Only nonstop</span>
@@ -48,26 +55,31 @@
         <div class="filter-item-wrap">
           <div class="title-button-wrap">
             <h4 class="filter-title">Duration</h4>
-            <the-button v-if="value < maxDuration" @button-click="clearDuration()">Reset</the-button>
+            <the-button v-if="value < maxDuration" @button-click="clearDuration()">Reset
+            </the-button>
           </div>
           <div class="content-wrap">
             <div class="range-value">
               <span>Flight duration</span>
-              <span class="chosen-value"
-                    v-if="value < maxDuration">{{value | toHours}}</span>
-              <span class="chosen-value"
-                    v-else>any</span>
+              <span
+                class="chosen-value"
+                v-if="value < maxDuration"
+              >{{value | toHours}}</span>
+              <span
+                class="chosen-value"
+                v-else
+              >any</span>
             </div>
             <div @mousedown="displayFloatingFilterButton">
               <vue-slider
-                  ref="slider"
-                  class="type-range"
-                  v-model="value"
-                  :value="maxDuration"
-                  :max="maxDuration"
-                  tooltip="none"
-                  v-bind="options"
-                  @change="filterData"
+                ref="slider"
+                class="type-range"
+                v-model="value"
+                :value="maxDuration"
+                :max="maxDuration"
+                tooltip="none"
+                v-bind="options"
+                @change="filterData"
               ></vue-slider>
             </div>
           </div>
@@ -78,17 +90,20 @@
             <the-button @button-click="clearStops" v-if="showStops"> Reset</the-button>
           </div>
           <template v-for="stop in dataForFilter.stops">
-            <div class="content-wrap"
-                 :key="stop.value">
+            <div
+              class="content-wrap"
+              :key="stop.value"
+            >
               <label @click="displayFloatingFilterButton">
-                <input class="checkbox"
-                       type="checkbox"
-                       name="stops"
-                       v-model="stop.isChecked"
-                       :value="stop.code"
-                       :checked="stop.isChecked"
-                       @change="filterData"
-                       @click="showResetStops"
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  name="stops"
+                  v-model="stop.isChecked"
+                  :value="stop.code"
+                  :checked="stop.isChecked"
+                  @change="filterData"
+                  @click="showResetStops"
                 >
                 <span class="checkbox-custom"></span>
                 <span class="label">{{stop.name}}</span>
@@ -108,14 +123,14 @@
             </div>
             <div @mousedown="displayFloatingFilterButton">
               <vue-slider
-                  ref="sliderPrice"
-                  class="type-range"
-                  v-model="priceValues"
-                  :min="minPrice"
-                  :max="maxPrice"
-                  :enable-cross="false"
-                  v-bind="priceOptions"
-                  @change="filterData"
+                ref="sliderPrice"
+                class="type-range"
+                v-model="priceValues"
+                :min="minPrice"
+                :max="maxPrice"
+                :enable-cross="false"
+                v-bind="priceOptions"
+                @change="filterData"
               ></vue-slider>
             </div>
           </div>
@@ -126,26 +141,32 @@
             <the-button @button-click="clearPrice"> Reset</the-button>
           </div>
           <template v-for="(airline, index) in dataForFilter.carrierCode">
-            <div class="content-wrap"
-                 v-if="index < variable"
-                 :key="airline.value">
+            <div
+              class="content-wrap"
+              v-if="index < variable"
+              :key="airline.value"
+            >
               <label @click="displayFloatingFilterButton">
-                <input class="checkbox"
-                       type="checkbox"
-                       name="Airlines"
-                       :value="airline.code"
-                       v-model="airline.isChecked"
-                       :checked="airline.isChecked"
-                       @change="filterData">
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  name="Airlines"
+                  :value="airline.code"
+                  v-model="airline.isChecked"
+                  :checked="airline.isChecked"
+                  @change="filterData"
+                >
                 <span class="checkbox-custom"></span>
                 <span class="label">{{airline.name}}</span>
               </label>
             </div>
           </template>
           <div class="btn-wrap" v-if="dataForFilter.carrierCode.length > 4">
-            <the-button @button-click="showMoreAirlines"
-                        :modifier="[{'arrow': true}]"
-                        :class="{'arrow-active': visible}">Show more
+            <the-button
+              @button-click="showMoreAirlines"
+              :modifier="[{'arrow': true}]"
+              :class="{'arrow-active': visible}"
+            >Show more
             </the-button>
           </div>
         </div>
@@ -156,16 +177,20 @@
           </div>
           <h5 class="filter-subtitle">Departure</h5>
           <template v-for="departItem in dataForFilter.departure">
-            <div class="content-wrap"
-                 :key="departItem.value">
+            <div
+              class="content-wrap"
+              :key="departItem.value"
+            >
               <label @click="displayFloatingFilterButton">
-                <input class="checkbox"
-                       @change="filterData"
-                       type="checkbox"
-                       name="Airports"
-                       :value="departItem.code"
-                       :disabled="dataForFilter.departure.length === 1"
-                       v-model="departItem.isChecked">
+                <input
+                  class="checkbox"
+                  @change="filterData"
+                  type="checkbox"
+                  name="Airports"
+                  :value="departItem.code"
+                  :disabled="dataForFilter.departure.length === 1"
+                  v-model="departItem.isChecked"
+                >
                 <span class="checkbox-custom"></span>
                 <span class="label">{{departItem.name}}</span>
               </label>
@@ -173,16 +198,20 @@
           </template>
           <h5 class="filter-subtitle">Arrival</h5>
           <template v-for="item in dataForFilter.arrival">
-            <div class="content-wrap"
-                 :key="item.value">
+            <div
+              class="content-wrap"
+              :key="item.value"
+            >
               <label>
-                <input class="checkbox"
-                       type="checkbox"
-                       @change="filterData"
-                       name="Airports"
-                       :value="item.code"
-                       :disabled="dataForFilter.arrival.length === 1"
-                       :checked="item.isChecked">
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  @change="filterData"
+                  name="Airports"
+                  :value="item.code"
+                  :disabled="dataForFilter.arrival.length === 1"
+                  :checked="item.isChecked"
+                >
                 <span class="checkbox-custom"></span>
                 <span class="label">{{item.name}}</span>
                 <br>
@@ -194,8 +223,9 @@
           <div class="filter-counter">{{filteredArrayForCounting.length}}</div>
           <div class="filter-button">
             <the-button
-                :modifier="[{'is-primary': true}]"
-                @button-click="getFilter">Filter
+              :modifier="[{'is-primary': true}]"
+              @button-click="getFilter"
+            >Filter
             </the-button>
           </div>
         </div>
@@ -206,14 +236,14 @@
 
 <script>
   import moment from 'moment';
+  import VueSlider from 'vue-slider-component';
+  import 'vue-slider-component/theme/default.css';
+  import { mapActions, mapMutations, mapState } from 'vuex';
   import airlines from '../../jsons/airlines';
   import airports from '../../jsons/airports';
-  import VueSlider from 'vue-slider-component';
+  import '../the-button/_the-button.scss';
   import TheButton from '../the-button/the-button';
   import './_filter.scss';
-  import 'vue-slider-component/theme/default.css';
-  import '../the-button/_the-button.scss';
-  import { mapMutations, mapState, mapActions } from 'vuex';
 
   export default {
     name: 'filters',
@@ -315,15 +345,16 @@
       this.closeFilterOnTablet();
     },
 
-    computed: mapState(['dataFromApi', 'filteredArray', 'filteredArrayForCounting', 'filterMobileShow']),
+    computed: mapState(
+      ['dataFromApi', 'filteredArray', 'filteredArrayForCounting', 'filterMobileShow']),
 
     filters: {
       toHours(value) {
         value = moment.duration(value);
         if (value._data.hours === 0) {
-          return `${ value._data.minutes } m`;
+          return `${value._data.minutes} m`;
         } else {
-          return `${ value._data.hours } h ${ value._data.minutes } m`;
+          return `${value._data.hours} h ${value._data.minutes} m`;
         }
       },
     },
@@ -342,7 +373,7 @@
           this.elementPosition = event.currentTarget.offsetTop - 17;
           filterButtonTablet.style = this.elementPosition;
           filterButtonTablet.style = 'display: flex; top: ' + this.elementPosition + 'px;'
-              + 'left: ' + this.positionButtonLeft + 'px;';
+            + 'left: ' + this.positionButtonLeft + 'px;';
         }
 
       },
@@ -366,7 +397,8 @@
         let dictionariesKeys = Object.keys(this.dataFromApi.dictionaries.carriers);
         for (let i = 0; i < this.dataFromApi.data.length; i++) {
           for (let j = 0; j < this.dataFromApi.data[i].offerItems[0].services.length; j++) {
-            for (let k = 0; k < this.dataFromApi.data[i].offerItems[0].services[j].segments.length; k++) {
+            for (let k = 0; k
+            < this.dataFromApi.data[i].offerItems[0].services[j].segments.length; k++) {
               let key = this.dataFromApi.data[i].offerItems[0].services[j].segments[k].flightSegment.carrierCode;
               arr.push(key);
             }
@@ -397,7 +429,7 @@
         const departArr = [];
         for (let i = 0; i < this.dataFromApi.data.length; i++) {
           departArr.push(
-              this.dataFromApi.data[i].offerItems[0].services[0].segments[0].flightSegment.departure.iataCode);
+            this.dataFromApi.data[i].offerItems[0].services[0].segments[0].flightSegment.departure.iataCode);
         }
 
         for (let i = 0; i < departArr.length; i++) {
@@ -410,9 +442,10 @@
       getIataArrival() {
         let arrivalArr = [];
         for (let i = 0; i < this.dataFromApi.data.length; i++) {
-          let targetSegment = this.dataFromApi.data[i].offerItems[0].services[0].segments.length - 1;
+          let targetSegment = this.dataFromApi.data[i].offerItems[0].services[0].segments.length
+            - 1;
           arrivalArr.push(
-              this.dataFromApi.data[i].offerItems[0].services[0].segments[targetSegment].flightSegment.arrival.iataCode);
+            this.dataFromApi.data[i].offerItems[0].services[0].segments[targetSegment].flightSegment.arrival.iataCode);
         }
         arrivalArr.sort();
         for (let i = 0; i < arrivalArr.length; i++) {
@@ -453,8 +486,8 @@
           for (let service in this.dataFromApi.data[i].offerItems[0].services) {
             if (this.dataFromApi.data[i].offerItems[0].services[service].segments.length > 1) {
               let departure = '',
-                  arrival = '',
-                  targetSegment = this.dataFromApi.data[i].offerItems[0].services[service].segments.length;
+                arrival = '',
+                targetSegment = this.dataFromApi.data[i].offerItems[0].services[service].segments.length;
               for (let segment in this.dataFromApi.data[i].offerItems[0].services[service].segments) {
                 if (segment == 0) {
                   departure = this.dataFromApi.data[i].offerItems[0].services[service].segments[segment].flightSegment.departure.at;
@@ -463,8 +496,8 @@
                 }
               }
               let arrSec = moment.utc(arrival).valueOf(),
-                  depSec = moment.utc(departure).valueOf(),
-                  differenceInMs = arrSec - depSec;
+                depSec = moment.utc(departure).valueOf(),
+                differenceInMs = arrSec - depSec;
               this.unsortedDur.push(differenceInMs);
             } else {
               let dep = this.dataFromApi.data[i].offerItems[0].services[service].segments[0].flightSegment.departure.at;
@@ -485,7 +518,7 @@
             return 0;
         });
         let maxDuration = this.unsortedDur[0];
-        this.unsortedDur.forEach(function(val) {
+        this.unsortedDur.forEach(function (val) {
           maxDuration = Math.max(maxDuration, val);
         });
         this.maxDuration = Number(maxDuration);
@@ -499,7 +532,7 @@
         }
         unsortedArr.sort();
         let minPrice = unsortedArr[0], maxPrice = unsortedArr[0];
-        unsortedArr.forEach(function(val) {
+        unsortedArr.forEach(function (val) {
           minPrice = Math.min(minPrice, val);
           maxPrice = Math.max(maxPrice, val);
         });
@@ -519,8 +552,8 @@
       },
       showResetStops() {
         for (let i = 0; i < this.dataForFilter.stops.length; i++) {
-          if(this.dataForFilter.stops[i].isChecked === true) {
-            this.showStops = false
+          if (this.dataForFilter.stops[i].isChecked === true) {
+            this.showStops = false;
           }
           this.showStops = true;
         }
@@ -528,7 +561,7 @@
       clearStops() {
         this.showStops = !this.showStops;
         for (let i = 0; i < this.dataForFilter.stops.length; i++) {
-          if(this.dataForFilter.stops[i].isChecked === false) {
+          if (this.dataForFilter.stops[i].isChecked === false) {
             this.dataForFilter.stops[i].isChecked = true;
             this.filterData();
           }
@@ -595,7 +628,11 @@
       },
       closeFilterOnTablet() {
         let filterButton = window.document.querySelector('.filter-footer'),
-            filter = window.document.querySelector('.filter');
+          filter = window.document.querySelector('.filter');
+
+        if (filterButton === null) {
+          return;
+        }
 
         if (filterButton.classList.contains('tablet')) {
           let filterWrapper = window.document.querySelector('.filter-wrapper');
