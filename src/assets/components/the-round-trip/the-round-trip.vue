@@ -150,7 +150,7 @@
           },
           passengersTypes: [],
           cabinType: {
-            getCabinType: this.selectedType,
+            getCabinType: 'Economy',
           },
         },
         getTokenOptions: {
@@ -190,7 +190,7 @@
       if(Object.keys(this.$route.query).length !== 0){
         this.dataForApi = this.$route.query;
         this.passengersTypes = this.$route.query.passengersTypes;
-        this.selectedType = this.$route.query.cabinType.getCabinType
+        // this.selectedType = this.$route.query.cabinType.getCabinType
       }
     },
     computed: {
@@ -222,10 +222,8 @@
       },
 
       changeCabinType(value) {
-
         this.selectedType = value;
         this.dataForApi.cabinType.getCabinType = value.toUpperCase().replace(' ', '_');
-
       },
 
       changeValues() {

@@ -196,7 +196,7 @@ export default new Vuex.Store({
           (+a.offerItems[0].price.total < +b.offerItems[0].price.total) ? 1 : ((+b.offerItems[0].price.total < +a.offerItems[0].price.total) ? -1 : 0))
     },
 
-    showFilterMobile({state, commit}, payload) {
+    showFilterMobile({commit}, payload) {
       commit("SET_SHOW_FILTER_MOBILE", payload)
     }
   },
