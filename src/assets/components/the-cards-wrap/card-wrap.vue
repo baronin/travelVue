@@ -11,7 +11,7 @@
         </the-button>
       </div>
       <div class="column display-none-mobile">
-        {{filteredArray.data.length}} {{' flight' | addLetterForQuantityOfTickets(filteredArray.data.length)}} found
+        {{filteredArrayForCounting.length}} {{' flight' | addLetterForQuantityOfTickets(filteredArrayForCounting.length)}} found
       </div>
       <div class="column">
         <p class="sort-by">
@@ -62,7 +62,7 @@
       }
     },
 
-    computed: mapState(['filteredArray', 'dataFromApi', 'filterMobileShow']),
+    computed: mapState(['filteredArrayForCounting', 'dataFromApi', 'filterMobileShow']),
 
     created() {
       window.document.addEventListener('scroll', () => {

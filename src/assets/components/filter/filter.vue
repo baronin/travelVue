@@ -234,7 +234,7 @@
           </template>
         </div>
         <div class="filter-footer">
-          <div class="filter-counter">{{filteredArrayForCounting.length}}</div>
+          <div class="filter-counter">{{ filteredArrayForCounting.length }}</div>
           <div class="filter-button">
             <the-button
                 :modifier="[{'is-primary': true}]"
