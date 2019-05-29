@@ -97,14 +97,14 @@
       return {
         dataForApi: {
           destinationCity: {
-            cityName: 'London (LON)',
-            cityCode: 'LON',
+            cityName: '',
+            cityCode: '',
             emptyInput: false,
             checkLanguage: false
           },
           originCity: {
-            cityName: 'Madrid (MAD)',
-            cityCode: 'MAD',
+            cityName: '',
+            cityCode: '',
             emptyInput: false,
             checkLanguage: false,
           },

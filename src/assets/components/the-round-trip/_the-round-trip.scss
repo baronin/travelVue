@@ -71,6 +71,10 @@
   position: absolute;
   max-width: 210px;
   color: $color-red-light;
+
+  @include desktop {
+    bottom: -20px;
+  }
 }
 
 .warning-input-border {

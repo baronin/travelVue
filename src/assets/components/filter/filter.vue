@@ -1,33 +1,39 @@
 <template>
-  <div class="filter"
-       v-resize="closeFilterOnTablet"
-       :class="[{'filter-mobile-show': filterMobileShow}]">
+  <div
+      class="filter"
+      v-resize="closeFilterOnTablet"
+      :class="[{'filter-mobile-show': filterMobileShow}]"
+  >
     <div class="filter-top">
       <h3>Filter your results</h3>
-      <the-button @button-click="resetAll"
-                  :modifier="[{'link': true}]">
+      <the-button
+          v-if="showResetBtn"
+          @button-click="resetAll"
+          :modifier="[{'link': true}]"
+      >
         Reset All
       </the-button>
-
       <p class="filter-count">{{filteredArrayForCounting.length}}</p>
       <the-button
-          :modifier="[{'is-close': true}]"
           :class="[{'is-hidden': !filterMobileShow}]"
-          @button-click="closeButtonFilter()">
+          :modifier="[{'is-close': true}]"
+          @button-click="closeButtonFilter()"
+      >
       </the-button>
     </div>
     <div class="filter-wrapper">
       <div class="filter-holder">
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Frequent </h4>
+          <h4 class="filter-title">Frequent</h4>
           <div class="content-wrap">
             <label>
-              <input class="checkbox"
-                     type="checkbox"
-                     name="frequent"
-                     value="withLuggage"
-                     :disabled="true"
-                     checked="true"
+              <input
+                  class="checkbox"
+                  type="checkbox"
+                  name="frequent"
+                  value="withLuggage"
+                  checked="true"
+                  :disabled="true"
               >
               <span class="checkbox-custom"></span>
               <span class="label">Only with luggage</span>
@@ -35,12 +41,13 @@
           </div>
           <div class="content-wrap">
             <label>
-              <input class="checkbox"
-                     type="checkbox"
-                     name="frequent"
-                     value="nonStop"
-                     :disabled="true"
-                     checked="true"
+              <input
+                  class="checkbox"
+                  type="checkbox"
+                  name="frequent"
+                  value="nonStop"
+                  :disabled="true"
+                  checked="true"
               >
               <span class="checkbox-custom"></span>
               <span class="label">Only nonstop</span>
@@ -48,14 +55,29 @@
           </div>
         </div>
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Duration</h4>
+          <div class="title-button-wrap">
+            <h4 class="filter-title">Duration</h4>
+            <the-button
+                v-if="showResetDuration"
+                @button-click="clearDuration()"
+            >
+              Reset
+            </the-button>
+          </div>
           <div class="content-wrap">
             <div class="range-value">
               <span>Flight duration</span>
-              <span class="chosen-value"
-                    v-if="value < maxDuration">{{value | toHours}}</span>
-              <span class="chosen-value"
-                    v-else>any</span>
+              <span
+                  class="chosen-value"
+                  v-if="value < maxDuration"
+              >
+                {{value | toHours}}</span>
+              <span
+                  class="chosen-value"
+                  v-else
+              >
+                any
+              </span>
             </div>
             <div @mousedown="displayFloatingFilterButton">
               <vue-slider
@@ -67,23 +89,34 @@
                   tooltip="none"
                   v-bind="options"
                   @change="filterData"
-              ></vue-slider>
+              />
             </div>
           </div>
         </div>
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Stops</h4>
+          <div class="title-button-wrap">
+            <h4 class="filter-title">Stops</h4>
+            <the-button
+                v-if="showCheckboxesReset(dataForFilter.stops)"
+                @button-click="resetCheckboxes(dataForFilter.stops)"
+            >
+              Reset
+            </the-button>
+          </div>
           <template v-for="stop in dataForFilter.stops">
-            <div class="content-wrap"
-                 :key="stop.value">
+            <div
+                class="content-wrap"
+                :key="stop.value"
+            >
               <label @click="displayFloatingFilterButton">
-                <input class="checkbox"
-                       type="checkbox"
-                       name="stops"
-                       :value="stop.code"
-                       v-model="stop.isChecked"
-                       :checked="stop.isChecked"
-                       @change="filterData"
+                <input
+                    class="checkbox"
+                    type="checkbox"
+                    name="stops"
+                    v-model="stop.isChecked"
+                    :value="stop.code"
+                    :checked="stop.isChecked"
+                    @change="filterData"
                 >
                 <span class="checkbox-custom"></span>
                 <span class="label">{{stop.name}}</span>
@@ -94,8 +127,12 @@
         <div class="filter-item-wrap">
           <div class="title-button-wrap">
             <h4 class="filter-title">Price</h4>
-
-            <the-button @button-click="clearPrice">Reset</the-button>
+            <the-button
+                v-if="showResetPriceButton"
+                @button-click="clearPrice"
+            >
+              Reset
+            </the-button>
           </div>
           <div class="content-wrap">
             <div class="range-value"><span>Total price</span>
@@ -111,50 +148,79 @@
                   :enable-cross="false"
                   v-bind="priceOptions"
                   @change="filterData"
-              ></vue-slider>
+              />
             </div>
           </div>
         </div>
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Airlines</h4>
+          <div class="title-button-wrap">
+            <h4 class="filter-title">Airlines</h4>
+            <the-button
+                v-if="showCheckboxesReset(dataForFilter.carrierCode)"
+                @button-click="resetCheckboxes(dataForFilter.carrierCode)"
+            >
+              Reset
+            </the-button>
+          </div>
           <template v-for="(airline, index) in dataForFilter.carrierCode">
-            <div class="content-wrap"
-                 v-if="index < variable"
-                 :key="airline.value">
+            <div
+                class="content-wrap"
+                v-if="index < variable"
+                :key="airline.value"
+            >
               <label @click="displayFloatingFilterButton">
-                <input class="checkbox"
-                       type="checkbox"
-                       name="Airlines"
-                       :value="airline.code"
-                       v-model="airline.isChecked"
-                       :checked="airline.isChecked"
-                       @change="filterData">
+                <input
+                    class="checkbox"
+                    type="checkbox"
+                    name="Airlines"
+                    :value="airline.code"
+                    v-model="airline.isChecked"
+                    :checked="airline.isChecked"
+                    @change="filterData"
+                >
                 <span class="checkbox-custom"></span>
                 <span class="label">{{airline.name}}</span>
               </label>
             </div>
           </template>
           <div class="btn-wrap" v-if="dataForFilter.carrierCode.length > 4">
-            <the-button @button-click="showMoreAirlines"
-                        :modifier="[{'arrow': true}]"
-                        :class="{'arrow-active': visible}">Show more
+            <the-button
+                @button-click="showMoreAirlines"
+                :modifier="[{'arrow': true}]"
+                :class="{'arrow-active': visible}"
+            >
+              {{ showMoreLess }}
             </the-button>
           </div>
         </div>
         <div class="filter-item-wrap">
-          <h4 class="filter-title">Airports</h4>
+          <div class="title-button-wrap">
+            <h4 class="filter-title">Airports</h4>
+            <the-button
+                v-if="showCheckboxesReset(dataForFilter.departure)
+                || showCheckboxesReset(dataForFilter.arrival)"
+                @button-click="resetCheckboxes(dataForFilter.departure)
+                || resetCheckboxes(dataForFilter.arrival)"
+            >
+              Reset
+            </the-button>
+          </div>
           <h5 class="filter-subtitle">Departure</h5>
           <template v-for="departItem in dataForFilter.departure">
-            <div class="content-wrap"
-                 :key="departItem.value">
+            <div
+                class="content-wrap"
+                :key="departItem.value"
+            >
               <label @click="displayFloatingFilterButton">
-                <input class="checkbox"
-                       @change="filterData"
-                       type="checkbox"
-                       name="Airports"
-                       :value="departItem.code"
-                       :disabled="dataForFilter.departure.length === 1"
-                       v-model="departItem.isChecked">
+                <input
+                    class="checkbox"
+                    type="checkbox"
+                    name="Airports"
+                    :value="departItem.code"
+                    :disabled="dataForFilter.departure.length === 1"
+                    v-model="departItem.isChecked"
+                    @change="filterData"
+                >
                 <span class="checkbox-custom"></span>
                 <span class="label">{{departItem.name}}</span>
               </label>
@@ -162,15 +228,20 @@
           </template>
           <h5 class="filter-subtitle">Arrival</h5>
           <template v-for="item in dataForFilter.arrival">
-            <div class="content-wrap"
-                 :key="item.value">
-              <label>
-                <input class="checkbox"
-                       type="checkbox"
-                       name="Airports"
-                       @change="filterData"
-                       v-model="item.isChecked"
-                       :disabled="dataForFilter.arrival.length === 1"
+            <div
+                class="content-wrap"
+                :key="item.value"
+            >
+              <label @click="displayFloatingFilterButton">
+                <input
+                    class="checkbox"
+                    type="checkbox"
+                    name="Airports"
+                    :value="item.code"
+                    :disabled="dataForFilter.arrival.length === 1"
+                    :checked="item.isChecked"
+                    @change="filterData"
+                    v-model="item.isChecked"
                 >
                 <span class="checkbox-custom"></span>
                 <span class="label">{{item.name}}</span>
@@ -184,7 +255,9 @@
           <div class="filter-button">
             <the-button
                 :modifier="[{'is-primary': true}]"
-                @button-click="getFilter">Filter
+                @button-click="getFilter"
+            >
+              Filter
             </the-button>
           </div>
         </div>
@@ -195,20 +268,21 @@
 
 <script>
   import moment from 'moment';
+  import VueSlider from 'vue-slider-component';
+  import 'vue-slider-component/theme/default.css';
+  import { mapMutations, mapState, mapActions } from 'vuex';
   import airlines from '../../jsons/airlines';
   import airports from '../../jsons/airports';
-  import VueSlider from 'vue-slider-component';
   import TheButton from '../the-button/the-button';
-  import './_filter.scss';
-  import 'vue-slider-component/theme/default.css';
   import '../the-button/_the-button.scss';
-  import { mapMutations, mapState, mapActions } from 'vuex';
+  import './_filter.scss';
 
   export default {
     name: 'filters',
     components: { TheButton, VueSlider },
     data() {
       return {
+        showResetPriceButton: false,
         elementPosition: '',
         dataJson: '',
         airlinesList: airlines,
@@ -281,7 +355,6 @@
         obj: {},
         disable: false,
         toggleBtnFilter: true,
-        default: {},
       };
     },
 
@@ -296,13 +369,36 @@
       this.getDepartAirports();
       this.getDuration();
       this.getAirlines();
-
     },
+
     mounted() {
       this.closeFilterOnTablet();
     },
 
-    computed: mapState(['dataFromApi', 'filteredArray', 'filteredArrayForCounting', 'filterMobileShow']),
+    computed: {
+      ...mapState([
+        'dataFromApi',
+        'filteredArray',
+        'filteredArrayForCounting',
+        'filterMobileShow']),
+      showResetDuration() {
+        return this.value < this.maxDuration;
+      },
+      showMoreLess() {
+        if (this.visible) {
+          return 'Show more';
+        }
+        return 'Show less';
+      },
+      showResetBtn() {
+        return this.showCheckboxesReset(this.dataForFilter.stops) ||
+            this.showCheckboxesReset(this.dataForFilter.carrierCode) ||
+            this.showCheckboxesReset(this.dataForFilter.departure) ||
+            this.showCheckboxesReset(this.dataForFilter.arrival) ||
+            this.showResetPriceButton ||
+            this.showResetDuration;
+      },
+    },
 
     filters: {
       toHours(value) {
@@ -347,35 +443,7 @@
           this.variable = 4;
         }
       },
-      clearPrice() {
-        if (this.priceValues) {
-          this.priceValues = [this.minPrice, this.maxPrice];
-          this.filterData();
-        }
-      },
-      resetAll() {
-        let objectData = this.dataForFilter;
 
-        this.clearPrice();
-        for (let i = 0; i < objectData.stops.length; i++) {
-          objectData.stops[i].isChecked = true;
-        }
-        for (let i = 0; i < objectData.carrierCode.length; i++) {
-          objectData.carrierCode[i].isChecked = true;
-        }
-        for (let i = 0; i < objectData.departure.length; i++) {
-          objectData.departure[i].isChecked = true;
-        }
-        for (let i = 0; i < objectData.arrival.length; i++) {
-          objectData.arrival[i].isChecked = true;
-        }
-        this.value = this.maxDuration;
-
-        this.dataForFilter.total = this.priceValues;
-        this.dataForFilter.duration = this.value;
-        this.setFilterData(this.dataForFilter);
-        this.cardsFilters();
-      },
       getAirlines() {
         let arr = [];
         let dictionariesKeys = Object.keys(this.dataFromApi.dictionaries.carriers);
@@ -407,7 +475,9 @@
           }
         }
       },
-//to take departure Iata code:
+      /**
+       * to take departure Iata code
+       */
       getIataDeparture() {
         const departArr = [];
         for (let i = 0; i < this.dataFromApi.data.length; i++) {
@@ -421,7 +491,9 @@
         }
         return Object.keys(this.objDep);
       },
-//to take arrival Iata code:
+      /**
+       * to take arrival Iata code:
+       */
       getIataArrival() {
         let arrivalArr = [];
         for (let i = 0; i < this.dataFromApi.data.length; i++) {
@@ -436,7 +508,9 @@
         }
         return Object.keys(this.obj);
       },
-//to compare airport code and to get the airport name:
+      /**
+       * to compare airport code and to get the airport name:
+       */
       getDepartAirports() {
         for (let code in this.airportsList) {
           for (let key in this.objDep) {
@@ -499,7 +573,6 @@
           else
             return 0;
         });
-
         let maxDuration = this.unsortedDur[0];
         this.unsortedDur.forEach(function(val) {
           maxDuration = Math.max(maxDuration, val);
@@ -507,7 +580,9 @@
         this.maxDuration = Number(maxDuration);
         this.value = this.maxDuration;
       },
-      // min and max price:
+      /**
+       * min and max price:
+       */
       getPriceValues() {
         let unsortedArr = [];
         for (let i = 0; i < this.dataFromApi.data.length; i++) {
@@ -523,19 +598,71 @@
         this.maxPrice = Math.floor(maxPrice) + 1;
         this.priceValues.push(this.minPrice, this.maxPrice);
       },
+
       filterData() {
         this.dataForFilter.total = this.priceValues;
         this.dataForFilter.duration = this.value;
         this.setFilterData(this.dataForFilter);
         this.cardsFilters();
+        this.showResetPriceButton = this.showResetPrice();
       },
 
-      // button close
+      clearDuration() {
+        this.value = this.maxDuration;
+      },
+      clearPrice() {
+
+        if (this.priceValues) {
+          this.priceValues = [this.minPrice, this.maxPrice];
+          this.filterData();
+        }
+      },
+
+      showCheckboxesReset(data) {
+        return data.filter(item => item.isChecked === false)
+            .length > 0;
+      },
+      resetCheckboxes(data) {
+        for (let i = 0; i < data.length; i++) {
+          data[i].isChecked = true;
+        }
+        this.filterData();
+      },
+      showResetPrice() {
+        return this.priceValues[0] !== this.minPrice || this.priceValues[1] !== this.maxPrice;
+      },
+      resetAll() {
+        this.clearPrice();
+        let objectData = this.dataForFilter;
+
+        for (let i = 0; i < objectData.stops.length; i++) {
+          objectData.stops[i].isChecked = true;
+        }
+        for (let i = 0; i < objectData.carrierCode.length; i++) {
+          objectData.carrierCode[i].isChecked = true;
+        }
+        for (let i = 0; i < objectData.departure.length; i++) {
+          objectData.departure[i].isChecked = true;
+        }
+        for (let i = 0; i < objectData.arrival.length; i++) {
+          objectData.arrival[i].isChecked = true;
+        }
+        this.value = this.maxDuration;
+        this.dataForFilter.total = this.priceValues;
+        this.dataForFilter.duration = this.value;
+        this.setFilterData(this.dataForFilter);
+        this.cardsFilters();
+        let filterBtnClose = document.querySelector('.filter-footer');
+        if (filterBtnClose.classList.contains('tablet')) {
+          filterBtnClose.style.display = 'none';
+        }
+        this.getFilter();
+      },
+
       closeButtonFilter() {
         document.body.classList.remove('overflow-hidden');
         this.showFilterMobile(!this.filterMobileShow);
       },
-
       getFilter() {
         this.getFilteredArrayForCounting();
 
@@ -546,10 +673,13 @@
         }
         document.body.classList.remove('overflow-hidden');
       },
-
       closeFilterOnTablet() {
         let filterButton = window.document.querySelector('.filter-footer'),
             filter = window.document.querySelector('.filter');
+
+        if (filterButton === null) {
+          return;
+        }
 
         if (filterButton.classList.contains('tablet')) {
           let filterWrapper = window.document.querySelector('.filter-wrapper');

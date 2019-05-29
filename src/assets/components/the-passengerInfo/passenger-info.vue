@@ -27,7 +27,7 @@
   import ThePriceSummary from "../the-price-summary/the-price-summary";
   import TheBreadCramps from "../the-braead-cramps/the-bread-cramps";
   import {mapState} from "vuex"
-  import ContactPassengerForm from "./contact-passenger-form/contact-passenger-form";
+  import ContactPassengerForm from "../contact-passenger-form/contact-passenger-form";
 
 
   export default {
