@@ -1,68 +1,25 @@
 .form {
+  margin-bottom: 20px;
   background-color: $color-white;
   border-radius: 4px;
-  margin-bottom: 20px;
 
-  @include tablet-large {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    border-bottom: 1px solid $color-gray-light;
-
-    .column {
-      width: 100%;
-      flex-basis: 0;
-      flex-grow: 1;
-    }
-  }
-
-  .bg-blue {
+  .text-bg-blue {
     display: block;
-    padding: 4px 8px;
+    margin-top: 15px;
     margin-bottom: 35px;
+    padding: 4px 8px;
     font-size: $font-size-small-extra;
     letter-spacing: 0.9px;
     background-color: $color-blue-fifteen-opacity;
     border-radius: 4px;
   }
-
-  .row {
-    flex-direction: column;
-    @include tablet-large {
-      flex-direction: row;
-    }
-
-    .column {
-      @include tablet-large {
-        margin-right: 16px;
-        /*&:first-child {
-          margin-right: 0;
-        }*/
-      }
-    }
-  }
 }
-
-.contact-info {
-  margin-bottom: 20px;
-  border-bottom: 1px solid $color-gray-light;
-
-  .column {
-    margin-bottom: 32px;
-    margin-left: 16px;
-    margin-right: 0;
-
-    &:first-child {
-      margin-left: 0;
-    }
-  }
-}
-
 
 .form-group-label {
   display: inline-block;
-  color: $color-text-gray;
   margin-bottom: 10px;
+  color: $color-text-gray;
+  word-break: break-word;
 }
 
 .form-group-input {
@@ -73,8 +30,6 @@
   outline-color: $color-blue;
 }
 
-
-
 .field .field-input {
   min-height: auto !important;
   height: auto !important;
@@ -83,6 +38,26 @@
   border: 1px solid $color-gray-light !important;
 }
 
+.passenger-info-main-aside {
+  max-width: 310px;
+}
+
+.passenger-info-holder {
+  display: flex;
+  padding: 0 0 20px;
+}
+
+.passenger-info-main {
+  width: 100%;
+
+  @include desktop {
+    padding: 0 20px 0 0;
+  }
+}
+
+/**
+ * another components
+ */
 .vue-phone-number-input .input-phone-number input:focus {
   outline: 2px solid rgba(77, 144, 254, 0.4) !important;
 
@@ -103,23 +78,6 @@
 .vue-phone-number-input .select-country-container {
   min-width: 50px !important;
   max-width: 88px !important;
-}
-
-.passenger-info-main-aside {
-  max-width: 310px;
-}
-
-.passenger-info-holder {
-  display: flex;
-  padding: 0 0 20px;
-}
-
-.passenger-info-main {
-  width: 100%;
-
-  @include desktop {
-    padding: 0 20px 0 0;
-  }
 }
 
 .pages-steps-holder {

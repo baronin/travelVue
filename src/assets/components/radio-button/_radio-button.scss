@@ -9,12 +9,10 @@
 .radio {
   width: 17px;
   height: 17px;
-  margin: 0 3px 0 0;
   vertical-align: top;
 
   &:not(checked) {
     position: absolute;
-    margin: 10px 0 0 7px;
     opacity: 0;
     z-index: -1;
   }
@@ -44,7 +42,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #6DB3F1;
+    background: $color-blue;
     opacity: 0;
     transition: .2s;
   }

@@ -143,3 +143,23 @@ input::placeholder {
 .has-text-weight-bold {
   font-weight: bold;
 }
+
+// validation
+.warning-message {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  max-width: 210px;
+  color: $color-red-light;
+  z-index: 1;
+
+  @include desktop {
+    bottom: auto;
+  }
+}
+
+.warning-input-border {
+  border: 2px solid $color-red-light !important;
+  outline-color: $color-red-light!important;
+}
+

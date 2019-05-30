@@ -2,11 +2,13 @@
   <div>
     <form action="" class="form">
       <h2 class="form-main-title">Passenger Information</h2>
-      <span class="bg-blue">Passenger names must match passport for international travel or government issued
-            photo ID for US domestic travel</span>
+      <span class="text-bg-blue">
+        Passenger names must match passport for international travel or government issued
+            photo ID for US domestic travel
+      </span>
       <h3 class="form-content-title">Contact Details</h3>
-      <div class="row contact-info">
-        <div class="column">
+      <div class="flex-grid">
+        <div class="column-6">
           <label class="form-group-label">Email</label>
           <input
               id="email"
@@ -19,7 +21,7 @@
               required
           >
         </div>
-        <div class="column">
+        <div class="column-6">
           <label class="form-group-label">Phone Number</label>
           <vue-tel-input
               :defaultCountry="'UA'"
@@ -34,15 +36,21 @@
         </div>
       </div>
       <div
-          :class="[{'passenger-info-wrap' : value.quantity > 0 }]" v-for="(value, i) in dataForApi.passengersTypes"
+          :class="[{'passenger-info-wrap' : value.quantity > 0 }]"
+          v-for="(value, i) in dataForApi.passengersTypes"
           :key="i"
       >
-        <div class="passenger-info-container" v-for="(item, index) in value.quantity" :key="index">
-          <h3 class="form-content-title">Passenger {{getCountOfPassenger(item, i)}} –
-            {{dataForApi.passengersTypes[i].title |
-            getPassengerType}}</h3>
-          <div class="row passenger-info">
-            <div class="column">
+        <div
+            class="passenger-info-container"
+            v-for="(item, index) in value.quantity"
+            :key="index"
+        >
+          <h3 class="form-content-title">
+            Passenger
+            {{getCountOfPassenger(item, i)}} – {{dataForApi.passengersTypes[i].title | getPassengerType}}
+          </h3>
+          <div class="flex-grid">
+            <div class="column-4">
               <label class="form-group-label">First Name</label>
               <input
                   id="firstName"
@@ -56,7 +64,6 @@
                      ||  !$v['firstName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].firstName.alpha}"
                   v-model.trim="$v['firstName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].firstName.$model"
               >
-
               <p
                   v-if="!$v['firstName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].firstName.alpha"
                   class="warning-message"
@@ -71,7 +78,7 @@
                 These fields are required
               </p>
             </div>
-            <div class="column">
+            <div class="column-4">
               <label class="form-group-label">Middle Name (optional)</label>
               <input
                   id="middleName"
@@ -79,20 +86,10 @@
                   type="text"
                   placeholder="Middle Name (optional)"
                   maxlength="255"
-                  :class="{
-                     'form-group--error': !$v['middleName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].middleName.alpha}"
-
-                  v-model.trim="$v['middleName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].middleName.$model"
+                  pattern="[a-zA-Z]*"
               >
-              <p
-                  v-if="!$v['middleName'+ dataForApi.passengersTypes[i].title].$each.$iter[index].middleName.alpha"
-                  class="warning-message"
-              >
-                enter only letters, please
-              </p>
-
             </div>
-            <div class="column">
+            <div class="column-4">
               <label class="form-group-label">Last Name</label>
               <input
                   id="lastName"
@@ -119,15 +116,15 @@
               </p>
             </div>
           </div>
-          <div class="row passenger-info">
-            <div class="column">
+          <div class="flex-grid">
+            <div class="column-4">
               <label class="form-group-label">Date of Birth</label>
               <input
                   id="dateBirth"
                   type="date"
+                  class="form-group-input"
                   :class="{ 'form-group--error': $v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error  }"
                   v-model.trim="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].dateOfBirth.$model"
-                  class="form-group-input"
               >
               <p
                   v-if="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error && i === 0"
@@ -145,10 +142,11 @@
               <p
                   v-if="$v['dateOfBirth'+ dataForApi.passengersTypes[i].title].$each.$iter[index].$error && i === 2"
                   class="warning-message"
-              >Date of birth must be no earlier than {{controlDateForInfants}}
+              >
+                Date of birth must be no earlier than {{controlDateForInfants}}
               </p>
             </div>
-            <div class="column">
+            <div class="column-4">
               <label class="form-group-label">{{ nameInput }}</label>
 
               <div :id="nameInput" class="fieldset-gender">
@@ -168,19 +166,14 @@
                 >
                 </radio-button>
               </div>
-              <!--<radio-button :number-for-id="index"
-                            :name-for-id="dataForApi.passengersTypes[i].title">
-                <slot name="nameLabel">Female</slot>
-              </radio-button>-->
             </div>
-            <!--  to prevent breaking layout -->
-            <div class="column"></div>
+            <div class="column-4"></div>
           </div>
         </div>
-
       </div>
     </form>
-    <the-button :modifier="[{'is-primary': true}]" @button-click="getReviewPage($v.validationGroup.$touch)">Book
+    <the-button :modifier="[{'is-primary': true}]" @button-click="getReviewPage($v.validationGroup.$touch)">
+      Book
     </the-button>
   </div>
 </template>
@@ -214,7 +207,6 @@
         validationGroup: [
           'firstName',
           'lastName',
-          'middleName',
           'dateOfBirth',
         ],
 
@@ -227,17 +219,14 @@
         dateOfBirthAdults: [],
         firstNameAdults: [],
         lastNameAdults: [],
-        middleNameAdults: [],
 
         dateOfBirthChildren: [],
         firstNameChildren: [],
         lastNameChildren: [],
-        middleNameChildren: [],
 
         dateOfBirthInfants: [],
         firstNameInfants: [],
         lastNameInfants: [],
-        middleNameInfants: [],
 
         nameLabel: {
           male: 'Male',
@@ -256,7 +245,6 @@
         for (let j = 0; j < this.dataForApi.passengersTypes[i].quantity; j++) {
           this['firstName' + this.dataForApi.passengersTypes[i].title].push({ firstName: '' });
           this['lastName' + this.dataForApi.passengersTypes[i].title].push({ lastName: '' });
-          this['middleName' + this.dataForApi.passengersTypes[i].title].push({ middleName: '' });
           this['dateOfBirth' + this.dataForApi.passengersTypes[i].title].push({ dateOfBirth: '' });
         }
       }
@@ -271,9 +259,9 @@
     methods: {
       ...mapMutations(['SET_INVALID_FORMS_PASSENGER_INFO_PAGE']),
       getCountOfPassenger(value, index) {
-        if (index == 1) {
+        if (index === 1) {
           return this.dataForApi.passengersTypes[0].quantity + value;
-        } else if (index == 2) {
+        } else if (index === 2) {
           return this.dataForApi.passengersTypes[0].quantity + this.dataForApi.passengersTypes[1].quantity + value;
         } else {
           return value;
@@ -299,13 +287,13 @@
           ],
         };
         let startFlightDay = new Date();
-        this.controlDateForInfants = moment(startFlightDay).add(-2, 'year').format('YYYY-MM-DD');
-        this.controlDateOfBirth = moment(startFlightDay).add(-12, 'year').format('YYYY-MM-DD');
+        this.controlDateForInfants = moment(startFlightDay).add(-2, 'year').format('MM-DD-YYYY');
+        this.controlDateOfBirth = moment(startFlightDay).add(-12, 'year').format('MM-DD-YYYY');
 
         for (let i = 0; i < this.dataForApi.passengersTypes.length; i++) {
           if (this.dataForApi.passengersTypes[i].quantity) {
             for (let j = 0; j < this.validationGroup.length; j++) {
-              if (this.validationGroup[j] == 'dateOfBirth' && i == 0) {
+              if (this.validationGroup[j] === 'dateOfBirth' && i === 0) {
                 validationObject[this.validationGroup[j] + this.dataForApi.passengersTypes[i].title] = {
                   required,
                   minLength: minLength(1),
@@ -318,7 +306,7 @@
                     },
                   },
                 };
-              } else if (this.validationGroup[j] == 'dateOfBirth' && i == 1) {
+              } else if (this.validationGroup[j] === 'dateOfBirth' && i === 1) {
                 validationObject[this.validationGroup[j] + this.dataForApi.passengersTypes[i].title] = {
                   required,
                   minLength: minLength(1),
@@ -331,7 +319,7 @@
                     },
                   },
                 };
-              } else if (this.validationGroup[j] == 'dateOfBirth' && i == 2) {
+              } else if (this.validationGroup[j] === 'dateOfBirth' && i === 2) {
                 validationObject[this.validationGroup[j] + this.dataForApi.passengersTypes[i].title] = {
                   required,
                   minLength: minLength(1),

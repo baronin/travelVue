@@ -46,8 +46,6 @@
       box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.1);
     }
   }
-
-
 }
 
 .form-field {
@@ -65,20 +63,6 @@
   &:focus {
     border: 2px solid $color-blue-medium;
   }
-}
-
-.warning-message {
-  position: absolute;
-  max-width: 210px;
-  color: $color-red-light;
-
-  @include desktop {
-    bottom: -20px;
-  }
-}
-
-.warning-input-border {
-  border: 2px solid $color-red-light !important;
 }
 
 
