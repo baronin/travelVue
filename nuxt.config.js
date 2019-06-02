@@ -24,15 +24,10 @@ export default {
   loading: { color: '#fff' },
 
   /*
-  ** Global CSS
-  */
-  css: [
-  ],
-
-  /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/globals'
   ],
 
   /*
@@ -42,8 +37,21 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma'
+    // @scss
+    '@nuxtjs/style-resources'
   ],
+
+  css: [
+    '@/assets/scss/app.scss'
+  ],
+
+  styleResources: {
+    scss: [
+      '@/assets/scss/_vars.scss',
+      '@/assets/scss/_mixins.scss'
+    ]
+  },
+
   /*
   ** Axios module configuration
   */

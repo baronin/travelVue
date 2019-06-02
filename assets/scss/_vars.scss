@@ -1,0 +1,54 @@
+// color
+$color-white: #fff;
+$color-black: #000;
+$color-yellow: #ffe300;
+$color-orange: #FFA84A;
+$color-green-light: #62C57B;
+$color-red-light: #FA4F33;
+$color-blue-super-light: #E8F3FD;
+
+$color-blue-light: #C5E1F9;
+$color-blue-medium: #4695DB;
+$color-blue: #6DB3F1;
+$color-blue-shade: #62A4DE;
+$color-blue-gray: #313F59;
+$color-blue-dark: #253D7B;
+$color-blue-alice: #F6FAFE;
+$color-blue-shade-light: #D4EBFF;
+$color-dark-main: #363637;
+$color-text-light: #8B8D95;
+$color-text-gray: #606570;
+$color-gray: #B1B1B2;
+$color-gray-light: #E0E1E7;
+$color-gray-medium: #7A88A4;
+$color-grey-strong: #EDEEF0;
+$color-grey-strong-medium: #FBFBFB;
+
+$warning-color: $color-red-light;
+
+$color-orange-hover: #F29B45;
+//color opacity 0.15
+$color-blue-fifteen-opacity: #6DB3F127;
+$color-blue-shade-opacity: #6db3f126;
+//color opacity 0.9
+$color-blue-ninety-opacity: #253D7Bc4;
+
+
+// font size
+$font-size-small-extra: 12px;
+$font-size-small: 13px;
+$font-size-medium: 14px;
+$font-size-medium-large: 16px;
+$font-size-large: 18px;
+$font-size-large-extra: 26px;
+
+
+// media
+$width-tablet: 600px;
+$width-tablet-large: 768px;
+$width-desktop: 1024px;
+$width-widescreen: 1215px;
+$width-large-desktop: 1440px;
+
+// background
+$bg-forms: $color-blue-ninety-opacity;
