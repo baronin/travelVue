@@ -1,0 +1,38 @@
+@mixin font($fontName, $urlName: $fontName) {
+  font-family: '#{$fontName}';
+  src: url('@/assets/fonts/#{$urlName}/#{$urlName}.eot');
+  src: url('@/assets/fonts/#{$urlName}/#{$urlName}.eot#iefix') format('embedded-opentype'),
+  url('@/assets/fonts/#{$urlName}/#{$urlName}.woff') format('woff'),
+  url('@/assets/fonts/#{$urlName}/#{$urlName}.ttf') format('truetype'),
+  url('@/assets/fonts/#{$urlName}/#{$urlName}.svg') format('svg');
+}
+
+@mixin tablet {
+  @media all and (min-width: $width-tablet) {
+    @content
+  }
+}
+
+@mixin tablet-large {
+  @media all and (min-width: $width-tablet-large) {
+    @content
+  }
+}
+
+@mixin desktop {
+  @media all and (min-width: $width-desktop) {
+    @content
+  }
+}
+
+@mixin widescreen {
+  @media all and (min-width: $width-widescreen) {
+    @content
+  }
+}
+
+@mixin large-desktop {
+  @media all and (min-width: $width-large-desktop) {
+    @content
+  }
+}
