@@ -37,17 +37,19 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
     // @scss
     '@nuxtjs/style-resources'
+  ],
+
+  css: [
+    '@/assets/scss/app.scss'
   ],
 
   styleResources: {
     scss: [
       '@/assets/scss/_vars.scss',
-      '@/assets/scss/_mixins.scss',
-      '@/assets/scss/_settings.scss'
-    ] // '@/assets/scss/_fonts.scss'
+      '@/assets/scss/_mixins.scss'
+    ]
   },
 
   /*

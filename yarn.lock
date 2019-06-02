@@ -940,13 +940,6 @@
     axios-retry "^3.1.2"
     consola "^2.7.1"
 
-"@nuxtjs/bulma@^1.2.1":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/bulma/-/bulma-1.2.4.tgz#9efe53a3516ed36ed23682fbf20ec4c806d1c42b"
-  integrity sha512-IIaCD2YJx345syPicI3hap1D9dyl17v4YdQ0+8IXyQA+mZPl46vmGa9Goe5ElQZW268B/RmD3mANAnfTCeersg==
-  dependencies:
-    bulma "^0.7.5"
-
 "@nuxtjs/eslint-config@^0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-config/-/eslint-config-0.0.1.tgz#3aeed1cc6a2e01331c7e6b56bfa7152ce8bb2d90"
@@ -1820,11 +1813,6 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
-
-bulma@^0.7.5:
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.5.tgz#35066c37f82c088b68f94450be758fc00a967208"
-  integrity sha512-cX98TIn0I6sKba/DhW0FBjtaDpxTelU166pf7ICXpCCuplHWyu6C9LYZmL5PEsnePIeJaiorsTEzzNk3Tsm1hw==
 
 bytes@3.0.0:
   version "3.0.0"
@@ -4321,11 +4309,6 @@ inquirer@^6.2.2:
     string-width "^2.1.0"
     strip-ansi "^5.1.0"
     through "^2.3.6"
-
-install@^0.12.2:
-  version "0.12.2"
-  resolved "https://registry.yarnpkg.com/install/-/install-0.12.2.tgz#ea10e9b2cbb5b0484f25080b24b5b34429d9f564"
-  integrity sha512-+7thTb4Rpvs9mnlhHKGZFJbGOO6kyMgy+gg0sgM5vFzIFK0wrCYXqdlaM71Bi289DTuPHf61puMFsaZBcwDIrg==
 
 invariant@^2.2.2:
   version "2.2.4"
