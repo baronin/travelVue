@@ -1,4 +1,4 @@
-import pkg from './package'
+import pkg from './package';
 
 export default {
   mode: 'spa',
@@ -11,11 +11,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    ],
   },
 
   /*
@@ -27,7 +27,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/globals'
+    '@/plugins/globals',
   ],
 
   /*
@@ -38,18 +38,18 @@ export default {
     '@nuxtjs/axios',
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
     // @scss
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
   ],
 
   css: [
-    '@/assets/scss/app.scss'
+    '@/assets/scss/app.scss',
   ],
 
   styleResources: {
     scss: [
       '@/assets/scss/_vars.scss',
-      '@/assets/scss/_mixins.scss'
-    ]
+      '@/assets/scss/_mixins.scss',
+    ],
   },
 
   /*
@@ -66,9 +66,9 @@ export default {
     postcss: {
       preset: {
         features: {
-          customProperties: false
-        }
-      }
+          customProperties: false,
+        },
+      },
     },
     /*
     ** You can extend webpack config here
@@ -80,9 +80,9 @@ export default {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+          exclude: /(node_modules)/,
+        });
       }
-    }
-  }
-}
+    },
+  },
+};
