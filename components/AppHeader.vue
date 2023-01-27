@@ -11,12 +11,12 @@
 </template>
 
 <script>
-export default {
-  name: 'AppHeader'
-}
+  export default {
+    name: 'AppHeader',
+  };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .header {
     width: 100%;
     background-color: $color-white;

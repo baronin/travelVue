@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
-    <AppHeader />
+  <div id="App">
+    <app-header />
     <nuxt />
   </div>
 </template>
 <script>
-import AppHeader from '../components/AppHeader'
+  import AppHeader from '../components/AppHeader';
 
-export default {
-  components: { AppHeader }
-}
+  export default {
+    components: { AppHeader },
+  };
 </script>

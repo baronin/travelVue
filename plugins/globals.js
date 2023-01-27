@@ -1,4 +1,4 @@
-import Vue from 'vue'
-import moment from 'moment'
+import Vue from 'vue';
+import moment from 'moment';
 
-Vue.use(moment)
+Vue.use(moment);

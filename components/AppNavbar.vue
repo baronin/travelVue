@@ -8,9 +8,9 @@
 </template>
 
 <script>
-export default {
-  name: 'AppNavbar'
-}
+  export default {
+    name: 'AppNavbar',
+  };
 </script>
 
 <style scoped>
