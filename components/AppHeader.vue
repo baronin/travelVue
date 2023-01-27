@@ -1,11 +1,11 @@
 <template>
   <header class="header">
     <div class="container">
-      <a href="#" class="link-logo" title="logotype">
+      <nuxt-link :to="'/round-trip'" class="link-logo" title="logotype">
         <svg class="icon logo">
           <use xlink:href="@/assets/svg/sprite.svg#logo" />
         </svg>
-      </a>
+      </nuxt-link>
     </div>
   </header>
 </template>
