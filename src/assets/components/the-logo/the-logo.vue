@@ -5,12 +5,17 @@
 </template>
 
 <script>
-    import './the-logo.scss';
     export default {
         name: "the-logo",
     }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+.link-logo {
+  display: inline-block;
+  max-width: 125px;
+  max-height: 28px;
+  color: $color-blue-medium;
+  font-weight: 700;
+}
 </style>

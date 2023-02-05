@@ -93,7 +93,6 @@ export default new Vuex.Store({
       }).finally(() => {
         commit('RUN_SPINER', false);
         commit('SET_DATA_FROM_API_EXIST', true);
-
       }).catch((error) => {
         if (error.response.status === 400) {
           commit('SET_FOUND_ERROR', true);
