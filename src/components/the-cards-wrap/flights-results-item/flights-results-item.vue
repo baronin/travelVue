@@ -3,7 +3,7 @@
     <div class="flights-results-item" v-for="(segments, index) in flightCardsData.offerItems[0].services" :key="index">
       <div class="column">
         <a href="#" class="logo-airline">
-          <img src="../../../img/logo-airlines.jpg" alt="logo airline">
+          <img src="../../../assets/img/logo-airlines.jpg" alt="logo airline">
         </a>
         <div class="ticket-range-time">
           {{toDepartureTime(segments)}} — {{toArrivedTime(segments )}}
@@ -37,7 +37,7 @@
 <script>
   import './_flights-results-item.scss';
   import moment from 'moment';
-  import airlines from '../../../jsons/airlines';
+  import airlines from '../../../assets/jsons/airlines.json';
 
   export default {
     name: 'FlightsResultsItem',

@@ -1,5 +1,5 @@
 {
-  "name": "altex-travel",
+  "name": "baronin-travel",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -26,6 +26,7 @@
     "vuex": "^3.1.0"
   },
   "devDependencies": {
+    "@ridi/object-case-converter": "^2.0.4",
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
@@ -45,7 +46,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

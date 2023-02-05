@@ -22,7 +22,7 @@
           <div>
             <div class="passenger-info-ticket">
               <a href="#" class="logo-airline">
-                <img src="../../../img/logo-airlines.jpg" alt="logo airline">
+                <img src="../../../assets/img/logo-airlines.jpg" alt="logo airline">
               </a>
               <div class="passenger-info-flights-holder">
                 <div class="passenger-info-flights">
@@ -68,7 +68,7 @@
 <script>
   import format from 'date-fns/format';
   import { mapActions, mapGetters } from 'vuex';
-  import airlines from '../../../jsons/airlines';
+  import airlines from '../../../assets/jsons/airlines.json';
   import TheButton from '../../the-button/the-button';
   import FlightInfo from '../flight-info/flight-info';
   import FlightsResultsItem from '../flights-results-item/flights-results-item';

@@ -1,4 +1,4 @@
-import api from '@/assets/helpers/data.mixin';
+import api from '@/helpers/data.mixin';
 import * as types from './mutation-types';
 
 /**

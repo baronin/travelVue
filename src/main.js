@@ -5,12 +5,12 @@ import store from './store'
 import moment from 'moment'
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
 import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
-import optionsForDatepicker from './assets/helpers/datepicker.options'
+import optionsForDatepicker from './helpers/datepicker.options'
 import VueSelect from 'vue-cool-select'
-import toggle from './assets/helpers/toggle'
+import toggle from './helpers/toggle'
 import VuePhoneNumberInput from 'vue-phone-number-input'
 import 'vue-phone-number-input/dist/vue-phone-number-input.css'
-import resize from './assets/directives/v-resize'
+import resize from './directives/v-resize'
 
 Vue.directive('toggle', toggle);
 Vue.directive('resize', resize);

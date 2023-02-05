@@ -14,7 +14,7 @@
             </p>
             <div class="about-company-info-wrap">
               <a href="#" class="logo-link">
-                <img src="../../../img/logo-airlines.jpg" alt="logo airline">
+                <img src="../../../assets/img/logo-airlines.jpg" alt="logo airline">
               </a>
               <div class="about-company-info">
                     <span>
@@ -53,8 +53,8 @@
   import './_itinerary-results.scss';
   import { mapGetters } from 'vuex';
   import moment from 'moment';
-  import airports from '../../../jsons/airports';
-  import airlines from '../../../jsons/airlines';
+  import airports from '../../../assets/jsons/airports.json';
+  import airlines from '../../../assets/jsons/airlines.json';
 
   export default {
     name: 'itinerary-results',

@@ -9,9 +9,9 @@
 <script>
 
   import './_general.scss';
-  import TheHeader from '../../assets/components/the-header/the-header';
+  import TheHeader from '../../components/the-header/the-header';
   import MainComponent from '../MainComponent/MainComponent';
-  import TheFooter from '../../assets/components/the-footer/the-footer';
+  import TheFooter from '../../components/the-footer/the-footer';
   import { mapActions, mapGetters } from 'vuex';
 
   export default {

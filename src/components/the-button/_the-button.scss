@@ -33,7 +33,7 @@
     right: 15px;
     width: 10px;
     height: 10px;
-    background: url(../../img/btn/arrow-down-blue.png) no-repeat center;
+    background: url("../../assets/img/btn/arrow-down-blue.png") no-repeat center;
   }
 }
 
@@ -41,7 +41,7 @@
   width: 10px;
   height: 10px;
   padding: 0;
-  background: url("../../img/btn/arrow-down-gray.png") no-repeat center;
+  background: url("../../assets/img/btn/arrow-down-gray.png") no-repeat center;
   cursor: pointer;
 
   &:focus {
@@ -50,7 +50,7 @@
 
   &-active {
     transform: rotate(180deg);
-    background-image: url("../../img/btn/arrow-down-blue.png");
+    background-image: url("../../assets/img/btn/arrow-down-blue.png");
   }
 }
 

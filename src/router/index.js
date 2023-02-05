@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Result from '../views/ResultComponent/ResultComponent'
-import TheMain from '../assets/components/the-main/the-main'
-import PassengerInfo from '../assets/components/the-passengerInfo/passenger-info'
-import Review from '../assets/components/review/review'
+import TheMain from '../components/the-main/the-main'
+import PassengerInfo from '../components/the-passengerInfo/passenger-info'
+import Review from '../components/review/review'
 
 Vue.use(VueRouter);
 

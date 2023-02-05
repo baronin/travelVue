@@ -189,8 +189,8 @@
   import VueSlider from 'vue-slider-component';
   import 'vue-slider-component/theme/default.css';
   import { mapActions, mapGetters } from 'vuex';
-  import airlines from '../../jsons/airlines';
-  import airports from '../../jsons/airports';
+  import airlines from '../../assets/jsons/airlines.json';
+  import airports from '../../assets/jsons/airports.json';
   import '../the-button/_the-button.scss';
   import TheButton from '../the-button/the-button';
   import './_filter.scss';

@@ -9,9 +9,9 @@
                  :dataFromAmadeusApi="dataFromAmadeusApi"
                  :showOnPassengerInfoPage="false"
       ></card-wrap>
-      <div class="not-found" v-if="!dataFromApiExist && !isSpinnerShown"
+<!--      <div class="not-found" v-if="!dataFromApiExist && !isSpinnerShown"
       >Please enter your flight...
-      </div>
+      </div>-->
     </div>
     <div class="spinner-holder">
       <half-circle-spinner
@@ -27,9 +27,9 @@
 <script>
   import HalfCircleSpinner from 'epic-spinners/src/components/lib/HalfCircleSpinner';
   import { mapGetters } from 'vuex';
-  import Filters from '../../assets/components/filter/filter';
-  import CardWrap from '../../assets/components/the-cards-wrap/card-wrap';
-  import dataMixin from '../../assets/helpers/data.mixin';
+  import Filters from '../../components/filter/filter';
+  import CardWrap from '../../components/the-cards-wrap/card-wrap';
+  import dataMixin from '../../helpers/data.mixin';
   import './_result-component.scss';
 
   export default {

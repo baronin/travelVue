@@ -121,7 +121,7 @@
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          data: 'grant_type=client_credentials&client_id=PfLKQhYRrlT574SUGrivkbpPZQ2MHIK1&client_secret=U2O26SHh0EmAtXfx',
+          data: 'grant_type=client_credentials&client_id=gH8ii41KPfyRJve5jFQArjmbaL4KObxr&client_secret=7bXMTlDA0AVtcy2m',
         },
         autocompleteOptions: {
           url: 'https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=',
@@ -153,7 +153,7 @@
       getSumPassengers() {
         let sum = 0;
         this.passengersTypes.map(item => sum += item.quantity);
-        this.dataForApi.countPassenger.sumPassengers = sum;
+        // this.dataForApi.countPassenger.sumPassengers = sum;
         return sum;
       },
       isIncrementDisabled() {
@@ -183,6 +183,7 @@
       },
 
       checkInput() {
+        console.log(this.dataForApi)
         if (this.dataForApi.originCity.cityName !== '') {
           this.dataForApi.originCity.emptyInput = false;
         } else {
@@ -198,6 +199,7 @@
 
       getLowFareFlight() {
         let emptyInputArray = [];
+        console.log('click getLowFareFlight', emptyInputArray)
         for (let key in this.dataForApi) {
           for (let item in this.dataForApi[key]) {
             if (this.dataForApi[key][item] === '' && item === 'cityCode'
@@ -216,8 +218,11 @@
         let inputEmpty = emptyInputArray.filter(element => element === false);
         if (inputEmpty.length === 0) {
           this.setDataForApi(this.dataForApi);
+          console.log('test')
+
           this.$router.push({ name: 'result', params: this.dataForApi });
           this.getDataFromApi();
+          console.log('test')
           this.$emit('get-result');
         }
       },
