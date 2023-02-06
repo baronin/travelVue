@@ -1,16 +1,16 @@
-import { client} from "@/api/client";
+import { instance } from '@/api/instance'
 
 export const flightOffers = {
-    get(options) {
-        return client.get('shopping/flight-offers', {
-            params: {
-                origin: options.originCity.cityCode,
-                destination: options.destinationCity.cityCode,
-                departureDate: options.flightDates.startDate,
-                returnDate: options.flightDates.startDate,
-                adults: options.countPassenger.sumPassengers,
-                travelClass: options.travelClass
-            }
-        })
-    }
+  get(options) {
+    return instance.get('shopping/flight-offers', {
+      params: {
+        origin: options.originCity.cityCode,
+        destination: options.destinationCity.cityCode,
+        departureDate: options.flightDates.startDate,
+        returnDate: options.flightDates.startDate,
+        adults: options.countPassenger.sumPassengers,
+        travelClass: options.travelClass,
+      },
+    })
+  },
 }
