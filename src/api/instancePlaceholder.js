@@ -1,13 +1,10 @@
 import axios from "axios";
-import { camelize} from "@ridi/object-case-converter";
+import {camelize} from "@ridi/object-case-converter";
 
-export const BASE_URL = 'https://test.api.amadeus.com/v1/';
-
-export const client = axios.create({
+export const BASE_URL = 'https://jsonplaceholder.typicode.com/';
+console.log('BASE_URL', BASE_URL)
+export const instancePlaceholder = axios.create({
     baseURL: BASE_URL,
-    headers: {
-        Authorization : `Bearer ${localStorage.getItem("access_token")}`
-    },
     transformRequest: (data) => {
         if (!data) return data;
         return Object.entries(data).reduce((url, [key, value], i) => {
