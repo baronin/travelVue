@@ -1,63 +1,84 @@
 <template>
   <div class="datepicker-trigger">
-    <input class="form-field"
-           :class="[{'warning-input-border': emptyInput}]"
+    <input
+      class="form-field"
+      :class="[{ 'warning-input-border': emptyInput }]"
+      id="datepicker-trigger"
            type="text"
-           id="datepicker-trigger"
-           placeholder="Depart - Return"
-           :value="formatDates(dateOne, dateTwo)"
-           readonly
-    >
-    <div class="warning-message" v-if="emptyInput">Please, select dates</div>
+      placeholder="Depart - Return"
+      :value="formatDates(dateOne, dateTwo)"
+      readonly
+    />
+    <div v-if="emptyInput" class="warning-message">Please, select dates</div>
     <AirbnbStyleDatepicker
-        :trigger-element-id="'datepicker-trigger'"
-        :mode="'range'"
-        :min-date="minDate"
-        :fullscreen-mobile="false"
-        :date-one="dateOne"
-        :date-two="dateTwo"
-        :offsetY="2"
-        :offsetX="0"
-        :showActionButtons="false"
-        :showShortcutsMenuTrigger="false"
-        @date-one-selected="val => { dateOne = val }"
-        @date-two-selected="val => { dateTwo = val }"
-        @previous-month="onPreviousMonthClick"
-        @next-month="onNextMonthClick"
-        ref="datepicker"
+      :trigger-element-id="'datepicker-trigger'"
+      :mode="'range'"
+      :min-date="minDate"
+      :fullscreen-mobile="false"
+      :date-one="dateOne"
+      :date-two="dateTwo"
+      :offsetY="2"
+      :offset-x="0"
+      :show-action-buttons="false"
+      :showShortcutsMenuTrigger="false"
+      @date-one-selected="
+        (val) => {
+          dateOne = val
+        }
+      "
+      @date-two-selected="
+        (val) => {
+          dateTwo = val
+        }
+      "
+      @previous-month="onPreviousMonthClick"
+      @next-month="onNextMonthClick"
+      ref="datepicker"
     >
     </AirbnbStyleDatepicker>
   </div>
 </template>
 
 <script>
-  import format from 'date-fns/format'
-  import './the-datepicker.scss'
-  import moment from 'moment'
+import format from 'date-fns/format'
+import './the-datepicker.scss'
+import moment from 'moment'
 
-  export default {
-    props: {emptyInput: Boolean},
-    data() {
-      return {
-        isPrevDisabled: false,
-        prevDescriptor: null,
-        prevButtonDescriptor: null,
-        temp: '',
-        monthsToShow: 2,
-        onlyMonth: [],
-        dateFormat: 'D MMM',
-        dateOne: null,
-        datesForApi: {
-          startDate: '',
-          endDate: ''
-        },
-        dateTwo: null,
-        minDate: moment().subtract(1, 'day').toString(),
-        days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        daysShort: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        sundayFirst: true,
-        countMonth: 0,
-        windowWidth: '',
+export default {
+  props: { emptyInput: Boolean },
+  data() {
+    return {
+      isPrevDisabled: false,
+      prevDescriptor: null,
+      prevButtonDescriptor: null,
+      temp: '',
+      monthsToShow: 2,
+      onlyMonth: [],
+      dateFormat: 'D MMM',
+      dateOne: null,
+      datesForApi: {
+        startDate: '',
+        endDate: '',
+      },
+      dateTwo: null,
+      minDate: moment().subtract(1, 'day').toString(),
+      days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      daysShort: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      sundayFirst: true,
+      countMonth: 0,
+      windowWidth: '',
+    }
+  },
+
+    watch: {
+      isPrevDisabled(newValue) {
+        if (newValue) {
+          this.prevDescriptor.classList.add('gray');
+          this.prevButtonDescriptor.setAttribute('disabled', 'disabled');
+        } else {
+          this.prevDescriptor.classList.remove('gray');
+          this.prevButtonDescriptor.removeAttribute('disabled');
+        }
       }
     },
 
@@ -100,17 +121,6 @@
         this.isPrevDisabled = false;
       },
     },
-
-    watch: {
-      isPrevDisabled(newValue) {
-        if (newValue) {
-          this.prevDescriptor.classList.add('gray');
-          this.prevButtonDescriptor.setAttribute('disabled', 'disabled');
-        } else {
-          this.prevDescriptor.classList.remove('gray');
-          this.prevButtonDescriptor.removeAttribute('disabled');
-        }
-      }
-    },
-  }
+  },
+}
 </script>

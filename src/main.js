@@ -1,16 +1,24 @@
 import Vue from 'vue'
-import App from './views/App/App.vue'
-import router from './router'
+import App from './App.vue'
 import store from './store'
+import router from './router'
+
+// helpers
+import toggle from './helpers/toggle'
+import optionsForDatepicker from './helpers/datepicker.options'
+
+// directives
+import resize from './directives/v-resize'
+
+// Plugins
 import moment from 'moment'
 import AirbnbStyleDatepicker from 'vue-airbnb-style-datepicker'
-import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
-import optionsForDatepicker from './helpers/datepicker.options'
 import VueSelect from 'vue-cool-select'
-import toggle from './helpers/toggle'
 import VuePhoneNumberInput from 'vue-phone-number-input'
+
+// css
+import 'vue-airbnb-style-datepicker/dist/vue-airbnb-style-datepicker.min.css'
 import 'vue-phone-number-input/dist/vue-phone-number-input.css'
-import resize from './directives/v-resize'
 
 Vue.directive('toggle', toggle);
 Vue.directive('resize', resize);

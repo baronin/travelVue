@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'MainComponent',
-  }
+export default {
+  name: 'MainComponent',
+}
 </script>
