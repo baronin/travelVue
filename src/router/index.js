@@ -4,6 +4,7 @@ import Result from '../views/ResultComponent/ResultComponent'
 import TheMain from '../components/the-main/the-main'
 import PassengerInfo from '../components/the-passengerInfo/passenger-info'
 import Review from '../components/review/review'
+import Posts from "@/pages/posts";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,11 @@ export default new VueRouter({
           path: '/review',
           name: 'review',
           component:  Review,
+        },
+        {
+          path: '/posts',
+          name: 'the-posts',
+          component:  Posts,
         },
       ]
     },

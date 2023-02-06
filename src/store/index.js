@@ -8,7 +8,7 @@ import global from './modules/global';
 import cardFilters from './modules/cardFilters';
 import api from './modules/api';
 import spinner from './modules/spinner';
-
+import placeholder from "@/store/modules/posts";
 /**
  * If the current environment is not prod
  *
@@ -33,6 +33,7 @@ export default new Vuex.Store({
     api,
     cardFilters,
     spinner,
+    placeholder
   },
 
   strict: debug,
