@@ -1,25 +1,25 @@
 export default {
   changeStylesForPassengerInfoPage(state) {
-    return state.changeStylesForPassengerInfoPage;
+    return state.changeStylesForPassengerInfoPage
   },
 
   changeStylesForResultPage(state) {
-    return state.changeStylesForResultPage;
+    return state.changeStylesForResultPage
   },
 
   showSearchForms(state) {
-    return state.showSearchForms;
+    return state.showSearchForms
   },
 
   durationTime(state) {
-    return state.durationTime;
+    return state.durationTime
   },
 
   itemCard(state) {
-    return state.itemCard;
+    return state.itemCard
   },
 
   breadCrampsActive(state) {
-    return state.breadCrampsActive;
+    return state.breadCrampsActive
   },
-};
+}

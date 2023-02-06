@@ -5,10 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "prettier": "prettier ./src/**/*.vue --write",
-    "lint": "yarn lint:js && yarn lint:css",
-    "lint:js": "eslint \"./src/**/*.{vue,js}\"",
-    "lint:css": "stylelint \"./src/**/*.{vue,css,scss}\""
+    "prettier": "prettier ./src/**/*.{vue,js} --write",
+    "lint:js": "eslint \"./src/**/*.{vue,js}\" --fix",
+    "lint:css": "stylelint \"./src/**/*.{vue,css,scss}\"",
+    "lint": "yarn lint:js && yarn lint:css"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -34,7 +34,7 @@
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "^8.33.0",
+    "eslint": "^7.0.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier-vue": "^4.2.0",
     "eslint-plugin-vue": "^9.9.0",

@@ -1,4 +1,4 @@
-import { HIDE, SHOW, TOGGLE } from './mutation-types';
+import { HIDE, SHOW, TOGGLE } from './mutation-types'
 
 export default {
   /**
@@ -7,7 +7,7 @@ export default {
    * @param state
    */
   [SHOW](state) {
-    state.isShown = true;
+    state.isShown = true
   },
 
   /**
@@ -16,7 +16,7 @@ export default {
    * @param state
    */
   [HIDE](state) {
-    state.isShown = false;
+    state.isShown = false
   },
 
   /**
@@ -25,6 +25,6 @@ export default {
    * @param state
    */
   [TOGGLE](state) {
-    state.isShown = !state.isShown;
+    state.isShown = !state.isShown
   },
-};
+}

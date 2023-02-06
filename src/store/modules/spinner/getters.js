@@ -6,6 +6,6 @@ export default {
    * @returns {default.isShown|(function(*))|boolean|*}
    */
   isShown(state) {
-    return state.isShown;
+    return state.isShown
   },
-};
+}

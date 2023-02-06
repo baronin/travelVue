@@ -1,4 +1,4 @@
-import {CLOSE, OPEN, TOGGLE} from './mutation-types';
+import { CLOSE, OPEN, TOGGLE } from './mutation-types'
 
 export default {
   /**
@@ -7,7 +7,7 @@ export default {
    * @param state
    */
   [OPEN](state) {
-    state.isOpened = true;
+    state.isOpened = true
   },
 
   /**
@@ -16,7 +16,7 @@ export default {
    * @param state
    */
   [CLOSE](state) {
-    state.isOpened = false;
+    state.isOpened = false
   },
 
   /**
@@ -25,6 +25,6 @@ export default {
    * @param state
    */
   [TOGGLE](state) {
-    state.isOpened = !state.isOpened;
+    state.isOpened = !state.isOpened
   },
-};
+}

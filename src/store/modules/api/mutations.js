@@ -5,7 +5,7 @@ import {
   SET_FILTERED_ARRAY,
   SET_FILTERED_DATA,
   SET_FILTERS,
-} from './mutation-types';
+} from './mutation-types'
 
 export default {
   /**
@@ -13,7 +13,7 @@ export default {
    * @param payload
    */
   [SET_DATA_FOR_API](state, payload) {
-    state.dataForApi = payload;
+    state.dataForApi = payload
   },
 
   /**
@@ -21,7 +21,7 @@ export default {
    * @param payload
    */
   [SET_DATA_FROM_API](state, payload) {
-    state.dataFromApi = JSON.parse(JSON.stringify(payload));
+    state.dataFromApi = JSON.parse(JSON.stringify(payload))
   },
 
   /**
@@ -29,7 +29,7 @@ export default {
    * @param payload
    */
   [SET_DATA_FROM_API_EXIST](state, payload) {
-    state.dataFromApiExist = payload;
+    state.dataFromApiExist = payload
   },
 
   /**
@@ -37,9 +37,9 @@ export default {
    * @param payload
    */
   [SET_FILTERED_ARRAY](state, payload) {
-    const response = JSON.parse(JSON.stringify(payload));
-    state.filteredArray = response;
-    state.filteredData = response.data;
+    const response = JSON.parse(JSON.stringify(payload))
+    state.filteredArray = response
+    state.filteredData = response.data
   },
 
   /**
@@ -49,7 +49,7 @@ export default {
    * @param payload
    */
   [SET_FILTERS](state, payload) {
-    state.filters = payload;
+    state.filters = payload
   },
 
   /**
@@ -59,6 +59,6 @@ export default {
    * @param payload
    */
   [SET_FILTERED_DATA](state, payload) {
-    state.filteredData = payload;
+    state.filteredData = payload
   },
-};
+}

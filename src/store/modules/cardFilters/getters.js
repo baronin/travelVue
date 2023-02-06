@@ -6,6 +6,6 @@ export default {
    * @returns {boolean}
    */
   isOpened(state) {
-    return state.isOpened;
+    return state.isOpened
   },
-};
+}

@@ -3,7 +3,7 @@ import {
   CHANGE_STYLES_FOR_PASSENGER_INFO_PAGE,
   SET_BREAD_CRAMPS_ACTIVE,
   SET_ITEM_CARD,
-} from './mutation-types';
+} from './mutation-types'
 
 export default {
   /**
@@ -11,7 +11,7 @@ export default {
    * @param payload
    */
   [CHANGE_STYLES_FOR_PASSENGER_INFO_PAGE](state, payload) {
-    state.changeStylesForPassengerInfoPage = payload;
+    state.changeStylesForPassengerInfoPage = payload
   },
 
   /**
@@ -19,7 +19,7 @@ export default {
    * @param payload
    */
   [SET_BREAD_CRAMPS_ACTIVE](state, payload) {
-    state.breadCrampsActive = payload;
+    state.breadCrampsActive = payload
   },
 
   /**
@@ -27,7 +27,7 @@ export default {
    * @param payload
    */
   [SET_ITEM_CARD](state, payload) {
-    state.itemCard = payload;
+    state.itemCard = payload
   },
 
   /**
@@ -35,11 +35,10 @@ export default {
    * @param payload
    */
   [CHANGE_ROUTER_PATH](state, payload) {
-    const passInfoOrReview = ['/passenger-info', '/review']
-        .includes(payload.path);
-    state.changeStylesForResultPage = !payload.path === '/';
-    state.showSearchForms = !passInfoOrReview;
-    state.changeStylesForPassengerInfoPage = passInfoOrReview;
-    state.breadCrampsActive = payload.name;
+    const passInfoOrReview = ['/passenger-info', '/review'].includes(payload.path)
+    state.changeStylesForResultPage = !payload.path === '/'
+    state.showSearchForms = !passInfoOrReview
+    state.changeStylesForPassengerInfoPage = passInfoOrReview
+    state.breadCrampsActive = payload.name
   },
-};
+}

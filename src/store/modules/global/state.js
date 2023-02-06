@@ -6,4 +6,4 @@ export default {
   durationTime: '',
   breadCrampsActive: '',
   itemCard: {},
-};
+}

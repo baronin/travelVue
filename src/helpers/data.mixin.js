@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
-  name: "dataMixin",
+  name: 'dataMixin',
   getDataFromMixin(options) {
-    return axios(options);
-  }
+    return axios(options)
+  },
 }

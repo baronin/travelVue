@@ -1,15 +1,13 @@
 <template>
   <div>
     <div class="container result-component">
-      <filters
+      <filters v-if="dataFromApiExist && !isSpinnerShown" :key="'display-on-page'"></filters>
+      <card-wrap
         v-if="dataFromApiExist && !isSpinnerShown"
-        :key="'display-on-page'"
-      ></filters>
-      <card-wrap v-if="dataFromApiExist && !isSpinnerShown"
-                 :dataFromAmadeusApi="dataFromAmadeusApi"
-                 :showOnPassengerInfoPage="false"
+        :data-from-amadeus-api="dataFromAmadeusApi"
+        :show-on-passenger-info-page="false"
       ></card-wrap>
-<!--      <div class="not-found" v-if="!dataFromApiExist && !isSpinnerShown"
+      <!--      <div class="not-found" v-if="!dataFromApiExist && !isSpinnerShown"
       >Please enter your flight...
       </div>-->
     </div>
@@ -25,30 +23,26 @@
 </template>
 
 <script>
-  import HalfCircleSpinner from 'epic-spinners/src/components/lib/HalfCircleSpinner';
-  import { mapGetters } from 'vuex';
-  import Filters from '../../components/filter/filter';
-  import CardWrap from '../../components/the-cards-wrap/card-wrap';
-  import dataMixin from '../../helpers/data.mixin';
-  import './_result-component.scss';
+import HalfCircleSpinner from 'epic-spinners/src/components/lib/HalfCircleSpinner'
+import { mapGetters } from 'vuex'
+import Filters from '../../components/filter/filter'
+import CardWrap from '../../components/the-cards-wrap/card-wrap'
+import dataMixin from '../../helpers/data.mixin'
+import './_result-component.scss'
 
-  export default {
-    name: 'ResultComponent',
-    components: { CardWrap, Filters, HalfCircleSpinner },
-    mixins: [dataMixin],
-    computed: {
-      ...mapGetters('api', [
-        'dataFromApi',
-        'dataFromApiExist',
-        'filteredData',
-      ]),
-      ...mapGetters('spinner', {
-        isSpinnerShown: 'isShown',
-      }),
+export default {
+  name: 'ResultComponent',
+  components: { CardWrap, Filters, HalfCircleSpinner },
+  mixins: [dataMixin],
+  computed: {
+    ...mapGetters('api', ['dataFromApi', 'dataFromApiExist', 'filteredData']),
+    ...mapGetters('spinner', {
+      isSpinnerShown: 'isShown',
+    }),
 
-      dataFromAmadeusApi() {
-        return this.filteredData;
-      },
+    dataFromAmadeusApi() {
+      return this.filteredData
     },
-  };
+  },
+}
 </script>

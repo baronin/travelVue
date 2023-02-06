@@ -1,5 +1,5 @@
 export default {
-  name: "optionsForDatepicker",
+  name: 'optionsForDatepicker',
   data: function () {
     return {
       Options: {
@@ -13,7 +13,7 @@ export default {
           disabled: '#fff',
         },
         daysShort: ['M', 'T ', 'W', 'T', 'F', 'S ', 'S'],
-      }
+      },
     }
-  }
+  },
 }
