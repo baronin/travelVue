@@ -2,9 +2,7 @@
   <header class="header">
     <div class="container">
       <router-link to="/">
-        <a href="#" class="link-logo">
-          <img src="@/assets/img/logo.svg" alt="logotype" class="logo" />
-        </a>
+        <a href="#" class="link-logo"> baronin.dev </a>
       </router-link>
     </div>
   </header>
