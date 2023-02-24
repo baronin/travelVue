@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <the-header></the-header>
     <main-component></main-component>
     <the-footer v-if="dataFromApiExist || !isSpinnerShown"></the-footer>
@@ -31,3 +31,11 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+</style>

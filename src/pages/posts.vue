@@ -17,7 +17,6 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import FormPost from '@/components/form-post/form-post'
-import { api } from '@/api/api'
 
 export default {
   name: 'ThePosts',
@@ -25,11 +24,12 @@ export default {
   computed: {
     ...mapGetters(['validPost', 'postCount']),
   },
-  methods: mapActions(['fetchPosts']),
   async mounted() {
     await this.fetchPosts()
-    // const token = await api.auth.getToken();
-    // console.log('token', token)
+  },
+  methods: {
+    // ...mapActions('api', ['getToken']),
+    ...mapActions(['fetchPosts']),
   },
 }
 </script>

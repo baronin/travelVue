@@ -6,8 +6,8 @@ export default {
   },
   getters: {
     validPost(state) {
-      return state.posts.filter((content) => {
-        return content.title && content.body
+      return state.posts.filter((post) => {
+        return post.title && post.body
       })
     },
     allPosts(state) {

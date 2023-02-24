@@ -1,6 +1,11 @@
 import { api } from '@/api/api'
 import * as types from './mutation-types'
 
+export const getToken = async ({ commit }, payload) => {
+  const response = await api.auth.getToken()
+  localStorage.setItem('access_token', response.data.accessToken)
+  commit(types.SET_TOKEN, response.data.accessToken)
+}
 /**
  * @param commit
  * @param dispatch
@@ -59,6 +64,7 @@ export const setFilteredData = ({ commit, getters }) => {
 }
 
 export default {
+  getToken,
   getDataFromApi,
   getSortByPrice,
   setFilters,
