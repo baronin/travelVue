@@ -1,4 +1,5 @@
 export default {
+  token: '',
   dataFromApiExist: false,
   dataForApi: {},
   dataFromApi: {
@@ -7,7 +8,6 @@ export default {
       carriers: {},
     },
   },
-
   filters: {
     frequent: [],
     stops: [],

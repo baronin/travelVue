@@ -190,7 +190,7 @@ export default {
     },
 
     checkInput() {
-      console.log(this.dataForApi)
+      console.log('check input', this.dataForApi)
       if (this.dataForApi.originCity.cityName !== '') {
         this.dataForApi.originCity.emptyInput = false
       } else {

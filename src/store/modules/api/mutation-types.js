@@ -1,3 +1,5 @@
+export const SET_TOKEN = 'SET_TOKEN'
+
 /**
  * @type {string}
  */
@@ -29,6 +31,7 @@ export const SET_FILTERS = 'SET_FILTERS'
 export const SET_FILTERED_DATA = 'SET_FILTERED_DATA'
 
 export default {
+  SET_TOKEN,
   SET_DATA_FOR_API,
   SET_DATA_FROM_API,
   SET_DATA_FROM_API_EXIST,

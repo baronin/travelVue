@@ -1,6 +1,10 @@
 import moment from 'moment'
 
 export default {
+  token(state) {
+    return state.token
+  },
+
   /**
    * @param state
    * @returns {default.dataFromApi|(function(*))|default.dataFromApi|{}|any}

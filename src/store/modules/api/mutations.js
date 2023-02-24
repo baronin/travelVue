@@ -5,9 +5,13 @@ import {
   SET_FILTERED_ARRAY,
   SET_FILTERED_DATA,
   SET_FILTERS,
+  SET_TOKEN,
 } from './mutation-types'
 
 export default {
+  [SET_TOKEN](state, token) {
+    state.token = token
+  },
   /**
    * @param state
    * @param payload
