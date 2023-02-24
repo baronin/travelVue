@@ -6,10 +6,12 @@
 
 .link-logo {
   display: inline-block;
+  font-size: 18px;
+  color: #7A88A4;
+  font-weight: bold;
 
-  .logo {
-    max-width: 125px;
-    max-height: 28px;
+  &:hover {
+    color: #6DB3F1;
   }
 }
 

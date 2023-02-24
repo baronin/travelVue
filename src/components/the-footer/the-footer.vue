@@ -2,20 +2,18 @@
   <footer class="footer bg-gray">
     <div class="row container">
       <div class="column">
-        <a href="#" class="link-logo" title="logotype"
-          ><img src="@/assets/img/logo-footer.svg" alt="logotype" class="logo"
-        /></a>
+        <a href="#" class="link-logo" title="logotype"> baronin.dev </a>
       </div>
       <div class="column">
-        <p>&copy; Copyright 2019</p>
+        <p>&copy; Copyright 2019 - {{ new Date().getFullYear() }}</p>
       </div>
       <div class="column">
         <ul class="list-group">
-          <li><a href="tel:+18777779097" title="number phone">+1 (877) 777-9097</a></li>
+          <li><a href="tel:+380633128080" title="number phone">+38 (063) 312-8080</a></li>
           <li>
-            <a href="mailto:traveltech@altexsoft.com" title="website travel altexsoft"
-              >traveltech@altexsoft.com</a
-            >
+            <a href="mailto:baronin.mailings@gmail.com" title="website travel's baronin">
+              baronin.mailings@gmail.com
+            </a>
           </li>
         </ul>
       </div>
