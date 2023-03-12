@@ -1,19 +1,19 @@
 .main {
    min-height: 500px;
    height: 100%;
-   padding: 70px 0 200px;
+   padding: 70px 0;
 
    background: url("../../assets/img/bg-main.png") no-repeat;
    background-size: cover;
 
    @include tablet {
-     padding: 120px 0 400px;
+     padding: 120px 0;
    }
    @include desktop {
-     padding: 170px 0 300px;
+     padding: 170px 0;
    }
    @include widescreen {
-     padding: 220px 0 500px;
+     padding: 220px 0;
    }
  }
 

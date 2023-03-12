@@ -1,5 +1,5 @@
 <template>
-  <main
+  <section
     :class="
       changeStylesForResultPage ? [{ 'main-result': true }] : [{ main: true, 'bg-blue-grey': true }]
     "
@@ -28,7 +28,7 @@
         <router-view></router-view>
       </div>
     </div>
-  </main>
+  </section>
 </template>
 
 <script>

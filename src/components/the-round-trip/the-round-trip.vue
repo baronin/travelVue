@@ -3,14 +3,13 @@
     <div class="form-row">
       <autocomplete
         v-model="dataForApi.originCity.cityName"
-        :input-value="dataForApi.originCity"
+        :default-value="dataForApi.originCity.cityName"
         :city-code.sync="dataForApi.originCity.cityCode"
-        :data-options="autocompleteOptions"
         :empty-origin-input="dataForApi.originCity.emptyInput"
-        :placeholder="'From'"
-        :token="dataForApi.tokenForRequest.token"
         :has-class="true"
-        @input-value="checkInput"
+        :results="locations"
+        placeholder="From"
+        @input="checkInput($event, 'from')"
       >
         <the-button :modifier="[{ 'is-reverse-button': true }]" @button-click="changeValues">
           <svg fill="currentColor" width="17px" height="15px" viewBox="0 0 17 15">
@@ -30,14 +29,12 @@
       </autocomplete>
       <autocomplete
         v-model="dataForApi.destinationCity.cityName"
-        :input-value="dataForApi.destinationCity"
+        :default-value="dataForApi.destinationCity.cityName"
         :city-code.sync="dataForApi.destinationCity.cityCode"
-        :data-options="autocompleteOptions"
         :empty-destination-input="dataForApi.destinationCity.emptyInput"
-        :placeholder="'To'"
-        :token="dataForApi.tokenForRequest.token"
+        placeholder="To"
         :has-class="false"
-        @input-value="checkInput"
+        @input="checkInput"
       />
     </div>
     <div class="form-row">
@@ -80,7 +77,6 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
 import dataMixin from '../../helpers/data.mixin'
 import Autocomplete from '../the-autocomplete/the-autocomplete'
 import TheButton from '../the-button/the-button'
@@ -89,6 +85,8 @@ import TheCounter from '../the-counter/the-counter'
 import TheDatepicker from '../the-datepicker/the-datepicker'
 import TheDropdown from '../the-dropdown/the-dropdown'
 import './_the-round-trip.scss'
+import { api } from '@/api'
+import { helpers } from '@/helpers'
 
 export default {
   name: 'TheRoundTrip',
@@ -116,25 +114,10 @@ export default {
           token: '',
         },
         countPassenger: {
-          sumPassengers: this.getSumPassengers,
+          sumPassengers: 1,
         },
         cabinType: {
           getCabinType: this.selectedType,
-        },
-      },
-      getTokenOptions: {
-        url: 'https://test.api.amadeus.com/v1/security/oauth2/token',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        data: 'grant_type=client_credentials&client_id=gH8ii41KPfyRJve5jFQArjmbaL4KObxr&client_secret=7bXMTlDA0AVtcy2m',
-      },
-      autocompleteOptions: {
-        url: 'https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=',
-        method: 'GET',
-        headers: {
-          Authorization: 'Bearer ',
         },
       },
       passengersTitle: 'Passenger',
@@ -149,6 +132,7 @@ export default {
       decrementDisabled: false,
       cabinTypeTitle: 'Cabin Type',
       selectedType: 'Economy',
+      locations: [],
     }
   },
   computed: {
@@ -168,7 +152,20 @@ export default {
     //   .then(response => (this.dataForApi.tokenForRequest.token = response.data.access_token));
   },
   methods: {
-    // ...mapActions('api', ['getDataFromApi', 'setDataForApi']),
+    // ...mapActions('index', ['getDataFromApi', 'setDataForApi']),
+    async getLocations(city) {
+      const locationsResponse = await api.locations.get({ subType: 'AIRPORT', keyword: city })
+      const locations = await locationsResponse.data.data
+      this.results.splice(0, this.results.length, ...locations)
+      console.log('results', this.results)
+    },
+    async getAmadeusData(city) {
+      const token = this.$store.state.api.token || ''
+      console.log('getAmadeusData')
+      if (token && city !== '' && city.length > 2) {
+        helpers.debounced(1000, await this.getLocations(city))
+      }
+    },
     showSelectedDays(datesForApi) {
       this.dataForApi.flightDates.startDate = datesForApi.startDate
       this.dataForApi.flightDates.endDate = datesForApi.endDate
@@ -189,9 +186,9 @@ export default {
       this.dataForApi.originCity = cityObject
     },
 
-    checkInput() {
-      console.log('check input', this.dataForApi)
-      if (this.dataForApi.originCity.cityName !== '') {
+    checkInput(e, where) {
+      console.log('check input', e, where)
+      /*if (this.dataForApi.originCity.cityName !== '') {
         this.dataForApi.originCity.emptyInput = false
       } else {
         this.dataForApi.originCity.cityCode = ''
@@ -201,12 +198,12 @@ export default {
         this.dataForApi.destinationCity.emptyInput = false
       } else {
         this.dataForApi.destinationCity.cityCode = ''
-      }
+      }*/
     },
 
     getLowFareFlight() {
       let emptyInputArray = []
-      console.log('click getLowFareFlight', emptyInputArray)
+      console.log('search', emptyInputArray)
       for (let key in this.dataForApi) {
         for (let item in this.dataForApi[key]) {
           if (
