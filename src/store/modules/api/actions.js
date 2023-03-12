@@ -1,11 +1,21 @@
-import { api } from '@/api/api'
+import { api } from '@/api'
 import * as types from './mutation-types'
+import Cookies from 'js-cookie'
 
 export const getToken = async ({ commit }, payload) => {
+  const tokenCookie = Cookies.get('access_token')
+
+  if (tokenCookie) {
+    commit(types.SET_TOKEN, tokenCookie)
+    return
+  }
   const response = await api.auth.getToken()
-  localStorage.setItem('access_token', response.data.accessToken)
-  commit(types.SET_TOKEN, response.data.accessToken)
+  const token = response.data.accessToken
+  const in30Minutes = 1 / 48
+  Cookies.set('access_token', token, { expires: in30Minutes }) // Set the token in a cookie that expires in 30 minutes
+  commit(types.SET_TOKEN, token)
 }
+
 /**
  * @param commit
  * @param dispatch

@@ -28,7 +28,7 @@ export default {
     await this.fetchPosts()
   },
   methods: {
-    // ...mapActions('api', ['getToken']),
+    // ...mapActions('index', ['getToken']),
     ...mapActions(['fetchPosts']),
   },
 }

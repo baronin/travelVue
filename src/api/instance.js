@@ -1,13 +1,16 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { camelize } from '@ridi/object-case-converter'
 
 export const BASE_URL = 'https://test.api.amadeus.com/v1/'
+
+const token = Cookies.get('access_token')
 
 export const instance = axios.create({
   baseURL: BASE_URL,
   headers: {
     get: {
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/x-www-form-urlencoded',
     },
   },
